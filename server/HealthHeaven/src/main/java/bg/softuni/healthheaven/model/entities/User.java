@@ -4,8 +4,10 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -37,5 +39,6 @@ public class User extends BaseEntity{
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private List<UserRole> roles = new ArrayList<>();
+
 
 }
