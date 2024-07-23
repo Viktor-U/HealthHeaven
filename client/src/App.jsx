@@ -1,22 +1,21 @@
-import React from 'react';
-import UserList from './Components/UserList';
-
-
-
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Register from "./Components/Register";
+import UsersList from "./Components/UserList";
+import Layout from "./Components/Layout";
 
 function App() {
-  
 
   return (
-    <div className="App">
-            <header className="App-header">
-                <h1>React and Spring Boot Integration</h1>
-            </header>
-            <main>
-                <UserList />
-            </main>
-        </div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route path="/register" element={<Register />} />
+            <Route path="/user-list" element={<UsersList />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
   )
 }
 
-export default App
+export default App;
+

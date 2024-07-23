@@ -1,18 +1,30 @@
 package bg.softuni.healthheaven.web;
 
+import bg.softuni.healthheaven.model.dtos.UserRegisterDTO;
+import bg.softuni.healthheaven.model.entities.User;
+import bg.softuni.healthheaven.model.entities.UserRole;
+import bg.softuni.healthheaven.model.enums.RoleEnum;
 import bg.softuni.healthheaven.repositories.UserRepository;
+import bg.softuni.healthheaven.services.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api/auth")
-public class AuthController implements UserDetailsService {
+public class AuthController implements UserDetailsService
+{
 
     @Autowired
     private UserRepository userRepository;
@@ -20,36 +32,26 @@ public class AuthController implements UserDetailsService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @PostMapping("/register")
-    public ResponseEntity<?> registerUser(@RequestBody User user) {
-        if (userRepository.existsByEmail(user.getUsername())) {
-            return ResponseEntity.badRequest().body("Username is already taken!");
-        }
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
-        return ResponseEntity.ok("User registered successfully");
+    @Autowired
+    private UserService userService;
+
+    @GetMapping("/users")
+    public ResponseEntity<List<User>> getAllUsers() {
+        List<User> users = userService.findAllUsers();
+        return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<?> authenticateUser(@RequestBody User user) {
-        User existingUser = userRepository.findByEmail(user.get());
-        if (existingUser != null && passwordEncoder.matches(user.getPassword(), existingUser.getPassword())) {
-            return ResponseEntity.ok("User logged in successfully");
-        }
-        return ResponseEntity.status(401).body("Invalid username or password");
+    @PostMapping(path = "/register")
+    public String saveEmployee(@RequestBody UserRegisterDTO userRegisterDTO)
+    {
+        String id = userService.registerUser(userRegisterDTO);
+        return id;
     }
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
-        if (user == null) {
-            throw new UsernameNotFoundException("User not found");
-        }
-        return org.springframework.security.core.userdetails.User
-                .withUsername(user.getUsername())
-                .password(user.getPassword())
-                .authorities("USER")
-                .build();
+        return null;
     }
 }
 

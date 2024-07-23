@@ -1,6 +1,6 @@
 package bg.softuni.healthheaven.services;
 
-import bg.softuni.healthheaven.model.User.UserDetailsDTO;
+import bg.softuni.healthheaven.model.dtos.User.UserDetailsDTO;
 import bg.softuni.healthheaven.model.entities.User;
 import bg.softuni.healthheaven.model.entities.UserRole;
 import bg.softuni.healthheaven.model.enums.RoleEnum;

@@ -1,4 +1,4 @@
-package bg.softuni.healthheaven.model.User;
+package bg.softuni.healthheaven.model.dtos.User;
 
 
 import lombok.Getter;

@@ -1,27 +1,28 @@
-// src/components/UserList.js
-import React, { useState, useEffect } from 'react';
-import UserService from '../service/UserService';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+
+function UsersList() {
+  const [users, setUsers] = useState([])
+
+  useEffect(() => {
+    axios.get('http://localhost:8080/api/auth/users')
+      .then(response =>{
+       setUsers(response.data)
+    })
+  }, []);
+
+  const usersArr = users.map(user => <li key={user.id}>{user.firstName} {user.lastName}</li>)
 
 
-const UserList = () => {
-    const [users, setUsers] = useState([]);
 
-    useEffect(() => {
-        UserService.getUsers().then((response) => {
-            setUsers(response.data);
-        });
-    }, []);
+  return (
+    <div>
+      <h1>UsersList</h1>
+      <ul>
+        {usersArr}
+      </ul>
+    </div>
+  )
+}
 
-    return (
-        <div>
-            <h2>User List</h2>
-            <ul>
-                {users.map((user) => (
-                    <li key={user.id}>{user.name} - {user.email}</li>
-                ))}
-            </ul>
-        </div>
-    );
-};
-
-export default UserList;
+export default UsersList;
