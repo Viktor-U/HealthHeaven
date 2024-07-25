@@ -1,0 +1,18 @@
+security:
+  jwt.token:
+    secret-key: "xJY+1SxXn8UjyDkU1Vp+gRvfpOCZD8dNwrPytJ+tH91/O2e4G8H4w+dUbUblg9NTkL25NXtKi/oaVvthjE7MEg=="
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/health?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
+    username: "root"
+    password: "001154"
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    show-sql: false
+    hibernate:
+      ddl-auto: update
+  sql:
+    init:
+      mode: never

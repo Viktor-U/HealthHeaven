@@ -1,14 +1,15 @@
-package bg.softuni.healthheaven.model.dtos;
+package bg.softuni.healthheaven.model.dtos.User;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-@Getter
-@Setter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class UserRegisterDTO {
     @NotBlank
     @Size(min = 2, max = 20, message = "First name should be between 2 and 20 symbols!")
@@ -22,7 +23,5 @@ public class UserRegisterDTO {
     @NotEmpty
     @Size(min = 3)
     private String password;
-    @NotEmpty
-    @Size(min = 3)
-    private String confirmPassword;
+
 }

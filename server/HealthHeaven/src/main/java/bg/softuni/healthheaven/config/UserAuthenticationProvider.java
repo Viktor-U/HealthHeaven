@@ -1,13 +1,11 @@
 package bg.softuni.healthheaven.config;
-package com.sergio.jwt.backend.config;
 
+import bg.softuni.healthheaven.model.dtos.User.UserDTO;
+import bg.softuni.healthheaven.services.UserService;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.sergio.jwt.backend.dtos.UserDto;
-import com.sergio.jwt.backend.repositories.UserRepository;
-import com.sergio.jwt.backend.services.UserService;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -54,7 +52,7 @@ public class UserAuthenticationProvider {
 
         DecodedJWT decoded = verifier.verify(token);
 
-        UserDto user = userService.findByLogin(decoded.getSubject());
+        UserDTO user = userService.findByEmail(decoded.getSubject());
 
         return new UsernamePasswordAuthenticationToken(user, null, Collections.emptyList());
     }

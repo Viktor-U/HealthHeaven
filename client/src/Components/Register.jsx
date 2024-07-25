@@ -1,52 +1,57 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { request, setAuthHeader } from '../helpers/axios_helper';
 
-const Register = () => {
+function Register() {
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
+        email: '',
         password: '',
-        email: ''
+        confirmPassword: ''
     });
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        });
+        const { name, value } = e.target;
+        setFormData(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (formData.password !== formData.confirmPassword) {
+            alert("Passwords do not match.");
+            return;
+        }
+
         try {
-            const response = await axios.post('http://localhost:8080/api/auth/register', formData);
-            console.log(response.data);
+            const data = {
+                firstName: formData.firstName,
+                lastName: formData.lastName,
+                email: formData.email,
+                password: formData.password
+            };
+            const response = await request('post', '/register', data);
+            setAuthHeader(response.data.token);
+            navigate('/dashboard');
         } catch (error) {
-            console.error(error);
+            console.error('Registration failed:', error);
         }
     };
 
     return (
         <form onSubmit={handleSubmit}>
-            <div>
-                <label>FirstName:</label>
-                <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} required />
-            </div>
-            <div>
-                <label>LastName:</label>
-                <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} required />
-            </div>
-            <div>
-                <label>Password:</label>
-                <input type="password" name="password" value={formData.password} onChange={handleChange} required />
-            </div>
-            <div>
-                <label>Email:</label>
-                <input type="email" name="email" value={formData.email} onChange={handleChange} required />
-            </div>
+            <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} placeholder="First Name" required />
+            <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} placeholder="Last Name" required />
+            <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Email" required />
+            <input type="password" name="password" value={formData.password} onChange={handleChange} placeholder="Password" required />
+            <input type="password" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} placeholder="Confirm Password" required />
             <button type="submit">Register</button>
         </form>
     );
-};
+}
 
 export default Register;

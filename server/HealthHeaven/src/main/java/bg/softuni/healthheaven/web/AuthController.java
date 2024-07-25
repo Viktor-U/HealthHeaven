@@ -1,57 +1,39 @@
 package bg.softuni.healthheaven.web;
 
-import bg.softuni.healthheaven.model.dtos.UserRegisterDTO;
-import bg.softuni.healthheaven.model.entities.User;
-import bg.softuni.healthheaven.model.entities.UserRole;
-import bg.softuni.healthheaven.model.enums.RoleEnum;
-import bg.softuni.healthheaven.repositories.UserRepository;
+import bg.softuni.healthheaven.config.UserAuthenticationProvider;
+import bg.softuni.healthheaven.model.dtos.User.UserDTO;
+import bg.softuni.healthheaven.model.dtos.User.UserLoginDTO;
+import bg.softuni.healthheaven.model.dtos.User.UserRegisterDTO;
 import bg.softuni.healthheaven.services.UserService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.List;
+import java.net.URI;
 
+@RequiredArgsConstructor
 @RestController
-@CrossOrigin
-@RequestMapping("/api/auth")
-public class AuthController implements UserDetailsService
-{
 
-    @Autowired
-    private UserRepository userRepository;
+public class AuthController {
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final UserService userService;
+    private final UserAuthenticationProvider userAuthenticationProvider;
 
-    @Autowired
-    private UserService userService;
-
-    @GetMapping("/users")
-    public ResponseEntity<List<User>> getAllUsers() {
-        List<User> users = userService.findAllUsers();
-        return new ResponseEntity<>(users, HttpStatus.OK);
+    @PostMapping("/login")
+    public ResponseEntity<UserDTO> login(@RequestBody @Valid UserLoginDTO userLoginDTO) {
+        UserDTO userDTO = userService.login(userLoginDTO);
+        userDTO.setToken(userAuthenticationProvider.createToken(userDTO.getEmail()));
+        return ResponseEntity.ok(userDTO);
     }
 
-    @PostMapping(path = "/register")
-    public String saveEmployee(@RequestBody UserRegisterDTO userRegisterDTO)
-    {
-        String id = userService.registerUser(userRegisterDTO);
-        return id;
+    @PostMapping("/register")
+    public ResponseEntity<UserDTO> register(@RequestBody @Valid UserRegisterDTO user) {
+        UserDTO createdUser = userService.register(user);
+        createdUser.setToken(userAuthenticationProvider.createToken(user.getEmail()));
+        return ResponseEntity.created(URI.create("/users/" + createdUser.getId())).body(createdUser);
     }
 
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return null;
-    }
 }
 

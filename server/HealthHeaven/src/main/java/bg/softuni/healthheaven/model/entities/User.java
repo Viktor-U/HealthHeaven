@@ -1,9 +1,7 @@
 package bg.softuni.healthheaven.model.entities;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,9 +9,10 @@ import java.util.List;
 
 @Entity
 @Table(name = "users")
-@Getter
-@Setter
+@AllArgsConstructor
 @NoArgsConstructor
+@Builder
+@Data
 public class User extends BaseEntity{
 
     @Column(nullable = false)
