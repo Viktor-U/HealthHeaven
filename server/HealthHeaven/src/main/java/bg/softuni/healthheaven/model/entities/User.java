@@ -1,11 +1,9 @@
 package bg.softuni.healthheaven.model.entities;
 
+import bg.softuni.healthheaven.model.enums.RoleEnum;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.*;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -15,28 +13,25 @@ import java.util.List;
 @Data
 public class User extends BaseEntity{
 
-    @Column(nullable = false)
+
+    @Column(name = "first_name", nullable = false)
+    @Size(max = 100)
     private String firstName;
 
-    @Column(nullable = false)
+    @Column(name = "last_name", nullable = false)
+    @Size(max = 100)
     private String lastName;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
+    private RoleEnum role;
+
+    @Column(nullable = false)
+    @Size(max = 100)
+    private String login;
+
+    @Column(nullable = false)
+    @Size(max = 100)
     private String password;
-
-    @Column(nullable = false, unique = true)
-    private String email;
-
-    @Column
-    private String profilePictureURL;
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "users_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
-    private List<UserRole> roles = new ArrayList<>();
-
 
 }

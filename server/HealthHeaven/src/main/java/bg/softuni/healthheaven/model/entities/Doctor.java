@@ -1,5 +1,6 @@
 package bg.softuni.healthheaven.model.entities;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.Getter;
@@ -19,11 +20,10 @@ public class Doctor extends BaseEntity{
 
     private String phoneNumber;
 
-    private String email;
+    @Column(columnDefinition = "text")
+    private String profilePictureURL;
 
-    private String address;
-
+    @Column(columnDefinition = "text")
     private String description;
 
-    private String profilePictureURL;
 }

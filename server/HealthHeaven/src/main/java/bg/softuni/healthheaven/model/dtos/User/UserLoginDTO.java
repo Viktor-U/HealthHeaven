@@ -1,4 +1,4 @@
-package bg.softuni.healthheaven.model.dtos.User;
+package bg.softuni.healthheaven.model.dtos.user;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
@@ -11,8 +11,8 @@ import lombok.*;
 public class UserLoginDTO {
 
     @NotBlank
-    private String email;
+    private String login;
 
-    @NotBlank
-    private String password;
+    @NotEmpty
+    private char[] password;
 }

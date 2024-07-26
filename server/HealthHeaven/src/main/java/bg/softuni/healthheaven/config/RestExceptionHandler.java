@@ -2,7 +2,7 @@ package bg.softuni.healthheaven.config;
 
 
 import bg.softuni.healthheaven.exceptions.AppException;
-import bg.softuni.healthheaven.model.dtos.ErrorDto;
+import bg.softuni.healthheaven.model.dtos.ErrorDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -13,9 +13,9 @@ public class RestExceptionHandler {
 
     @ExceptionHandler(value = { AppException.class })
     @ResponseBody
-    public ResponseEntity<ErrorDto> handleException(AppException ex) {
+    public ResponseEntity<ErrorDTO> handleException(AppException ex) {
         return ResponseEntity
                 .status(ex.getStatus())
-                .body(ErrorDto.builder().message(ex.getMessage()).build());
+                .body(ErrorDTO.builder().message(ex.getMessage()).build());
     }
 }

@@ -1,6 +1,6 @@
 package bg.softuni.healthheaven.config;
 
-import bg.softuni.healthheaven.model.dtos.User.UserDTO;
+import bg.softuni.healthheaven.model.dtos.user.UserDTO;
 import bg.softuni.healthheaven.services.UserService;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
@@ -13,8 +13,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
 import java.util.Base64;
-import java.util.Collections;
 import java.util.Date;
 
 @RequiredArgsConstructor
@@ -32,15 +32,16 @@ public class UserAuthenticationProvider {
         secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
     }
 
-    public String createToken(String login) {
+    public String createToken(UserDTO user) {
         Date now = new Date();
         Date validity = new Date(now.getTime() + 3600000); // 1 hour
 
         Algorithm algorithm = Algorithm.HMAC256(secretKey);
         return JWT.create()
-                .withSubject(login)
+                .withSubject(user.getLogin())
                 .withIssuedAt(now)
                 .withExpiresAt(validity)
+                .withClaim("role", user.getRole().name())
                 .sign(algorithm);
     }
 
@@ -52,9 +53,9 @@ public class UserAuthenticationProvider {
 
         DecodedJWT decoded = verifier.verify(token);
 
-        UserDTO user = userService.findByEmail(decoded.getSubject());
+        UserDTO user = userService.findByLogin(decoded.getSubject());
 
-        return new UsernamePasswordAuthenticationToken(user, null, Collections.emptyList());
+        return new UsernamePasswordAuthenticationToken(user, null, Arrays.asList(user.getRole()));
     }
 
 }
