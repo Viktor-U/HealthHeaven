@@ -1,11 +1,11 @@
 package bg.softuni.healthheaven.model.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @Entity
 @Table(name = "doctors")
@@ -25,5 +25,9 @@ public class Doctor extends BaseEntity{
 
     @Column(columnDefinition = "text")
     private String description;
+
+    @OneToMany
+    @JoinColumn(name = "doctor_id")
+    private List<Comment> comments;
 
 }

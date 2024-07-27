@@ -6,3 +6,9 @@
     display: flex;
     flex-wrap: nowrap;
 }
+
+.latest-doctors{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}

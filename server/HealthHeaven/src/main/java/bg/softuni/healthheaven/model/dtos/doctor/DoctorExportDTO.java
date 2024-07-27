@@ -1,7 +1,6 @@
 package bg.softuni.healthheaven.model.dtos.doctor;
 
-import bg.softuni.healthheaven.model.dtos.commet.CommentDTO;
-import bg.softuni.healthheaven.model.entities.Comment;
+import bg.softuni.healthheaven.model.dtos.commet.CommentExportDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class DoctorDTO {
+public class DoctorExportDTO {
 
     private long id;
 
@@ -26,5 +25,7 @@ public class DoctorDTO {
     private String profilePictureURL;
 
     private String description;
+
+    private List<CommentExportDTO> comments;
 
 }
