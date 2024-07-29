@@ -28,7 +28,7 @@ public class User extends BaseEntity{
 
     @Column(nullable = false)
     @Size(max = 100)
-    private String login;
+    private String email;
 
     @Column(nullable = false)
     @Size(max = 100)

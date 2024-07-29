@@ -15,7 +15,7 @@ public class UserRegisterDTO {
     private String lastName;
 
     @NotEmpty
-    private String login;
+    private String email;
 
     @NotEmpty
     private char[] password;

@@ -30,7 +30,7 @@ public class AppConfig {
             User user = new User();
             user.setFirstName("Viktor");
             user.setLastName("Uzunov");
-            user.setLogin("VIKI");
+            user.setEmail("VIKI@mail.com");
             user.setRole(RoleEnum.ADMIN);
             user.setPassword(passwordEncoder.encode("1111"));
            return userRepository.save(user);

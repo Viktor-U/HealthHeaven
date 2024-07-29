@@ -11,7 +11,7 @@ import lombok.*;
 public class UserLoginDTO {
 
     @NotBlank
-    private String login;
+    private String email;
 
     @NotEmpty
     private char[] password;

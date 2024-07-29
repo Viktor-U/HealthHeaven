@@ -40,7 +40,7 @@ public class DoctorService{
     public DoctorExportDTO getOneDoctor(Long id) {
         DoctorExportDTO result = modelMapper.map(doctorRepository.findById(id), DoctorExportDTO.class);
         for (CommentExportDTO comment : result.getComments()) {
-            comment.setAuthor(commentRepository.findById(comment.getId()).get().getAuthor().getLogin());
+            comment.setAuthor(commentRepository.findById(comment.getId()).get().getAuthor().getEmail());
         }
         return result;
 

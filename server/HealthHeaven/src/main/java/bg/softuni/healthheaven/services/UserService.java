@@ -27,7 +27,7 @@ public class UserService {
     private final ModelMapper modelMapper;
 
     public UserDTO login(UserLoginDTO userLoginDTO) {
-        User user = userRepository.findByLogin(userLoginDTO.getLogin())
+        User user = userRepository.findByEmail(userLoginDTO.getEmail())
                 .orElseThrow(() -> new AppException("Unknown user", HttpStatus.NOT_FOUND));
 
         if (passwordEncoder.matches(CharBuffer.wrap(userLoginDTO.getPassword()), user.getPassword())) {
@@ -38,7 +38,7 @@ public class UserService {
     }
 
     public UserDTO register(UserRegisterDTO userRegisterDTO) {
-        Optional<User> optionalUser = userRepository.findByLogin(userRegisterDTO.getLogin());
+        Optional<User> optionalUser = userRepository.findByEmail(userRegisterDTO.getEmail());
 
         if (optionalUser.isPresent()) {
             throw new AppException("Login already exists", HttpStatus.BAD_REQUEST);
@@ -53,8 +53,8 @@ public class UserService {
         return modelMapper.map(savedUser, UserDTO.class);
     }
 
-    public UserDTO findByLogin(String login) {
-        User user = userRepository.findByLogin(login)
+    public UserDTO findByLogin(String email) {
+        User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new AppException("Unknown user", HttpStatus.NOT_FOUND));
 
         return modelMapper.map(user, UserDTO.class);

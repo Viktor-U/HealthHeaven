@@ -24,7 +24,7 @@ public class CommentService {
     public void addComment(CommentDTO commentDTO, Long id) {
 
         Comment comment = modelMapper.map(commentDTO, Comment.class);
-        comment.setAuthor(userRepository.findByLogin(commentDTO.getAuthor()).get());
+        comment.setAuthor(userRepository.findByEmail(commentDTO.getAuthor()).get());
         comment.setDoctor(doctorRepository.findById(id).get());
         comment.setTimeOnPost(Instant.now());
 

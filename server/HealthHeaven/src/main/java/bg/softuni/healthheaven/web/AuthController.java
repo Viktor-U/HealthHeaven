@@ -14,6 +14,7 @@ import java.net.URI;
 
 @RequiredArgsConstructor
 @RestController
+@RequestMapping("/auth")
 public class AuthController {
 
     private final UserService userService;
