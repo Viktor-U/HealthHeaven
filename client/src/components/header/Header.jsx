@@ -1,6 +1,9 @@
+import { useContext } from "react";
 import {Link} from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthContext";
 
 export default function Header(){
+    const {} = useContext(AuthContext)
     return(
         <header>
             <h1><Link className="home" to="/">HealthHeavan</Link></h1>

@@ -5,8 +5,8 @@
     border-radius: 20px;
     padding: 40px;
     box-sizing: border-box;
-    background: #3e4443;
-    box-shadow: 0px 0px 32px 0px #49535e, -14px -14px 20px #191c21;
+    background: #5f97e4;
+    box-shadow: 0px 0px 32px 0px #49535e, -14px -14px 20px #6786bb;
 }
 
 #register-page {
@@ -16,8 +16,8 @@
     border-radius: 20px;
     padding: 40px;
     box-sizing: border-box;
-    background: #3e4443;
-    box-shadow: 0px 0px 32px 0px #49535e, -14px -14px 20px #191c21;
+    background: #5f97e4;
+    box-shadow: 0px 0px 32px 0px #49535e, -14px -14px 20px #6786bb;
 }
 
 .container {
@@ -124,7 +124,30 @@ label[for="terms"]>input {
     right: 8px;
     text-decoration: none;
     color: black;
-    background: rgb(235, 157, 142);
+    background: rgb(202, 237, 255);
     border-radius: 10px;
     padding: 5px;
+}
+
+
+/* CSS for error message span */
+.error-message {
+    color: #FF0000; /* Red text color */
+    font-weight: bold; /* Bold font */
+    font-size: 1em; /* Font size */
+    margin-top: 0.5em; /* Space above the message */
+    display: block; /* Display as block element */
+}
+
+.error-message::before {
+    content: "⚠️ "; /* Add a warning icon before the message */
+    font-size: 1em; /* Size of the icon */
+}
+
+.error-message {
+    background-color: #FFEDED; /* Light red background */
+    border: 1px solid #FF0000; /* Red border */
+    padding: 1em; /* Padding inside the message box */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.2); /* Slight shadow for depth */
 }

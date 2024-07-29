@@ -30,7 +30,7 @@ public class UserService {
         User user = userRepository.findByEmail(userLoginDTO.getEmail())
                 .orElseThrow(() -> new AppException("Unknown user", HttpStatus.NOT_FOUND));
 
-        if (passwordEncoder.matches(CharBuffer.wrap(userLoginDTO.getPassword()), user.getPassword())) {
+        if (passwordEncoder.matches(userLoginDTO.getPassword(), user.getPassword())) {
             return modelMapper.map(user, UserDTO.class);
 
         }
@@ -46,7 +46,7 @@ public class UserService {
 
         User user = modelMapper.map(userRegisterDTO, User.class);
         user.setRole(RoleEnum.USER);
-        user.setPassword(passwordEncoder.encode(CharBuffer.wrap(userRegisterDTO.getPassword())));
+        user.setPassword(passwordEncoder.encode(userRegisterDTO.getPassword()));
 
         User savedUser = userRepository.save(user);
 

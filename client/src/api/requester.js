@@ -14,8 +14,11 @@ async function requester(method, url, data){
     }
 
     const respones = await fetch(url, options);
-    const result = respones.json();
+    const result = await respones.json();
     
+    if (!respones.ok) {
+        throw result;
+    }
     return result;
 };
 

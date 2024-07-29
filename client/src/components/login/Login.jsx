@@ -11,7 +11,7 @@ export default function Login(){
 
     const loginHandler = async ({ email, password }) => {
         try {
-            login(email, password)
+            await login(email, password)
             navigate('/');
         } catch (err) {
             console.log(err.message);
