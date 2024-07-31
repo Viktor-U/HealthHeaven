@@ -15,13 +15,20 @@ export default function usePersistedState(key, initialState){
         return authData;
     });
 
-    const updateState = (value) =>{
+    const updateState = (value) => {
         const newState = typeof value === 'function'
             ? value(state)
             : value;
 
-        localStorage.setItem(key, JSON.stringify(newState))
+        if (newState === null || newState === undefined) {
+            localStorage.removeItem(key)
+        } else{
+
+            localStorage.setItem(key, JSON.stringify(newState))
+
+        }
         
+
 
         setState(newState);
     }

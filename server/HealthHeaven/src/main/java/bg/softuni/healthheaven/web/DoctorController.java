@@ -1,6 +1,7 @@
 package bg.softuni.healthheaven.web;
 
 import bg.softuni.healthheaven.model.dtos.commet.CommentDTO;
+import bg.softuni.healthheaven.model.dtos.commet.CommentExportDTO;
 import bg.softuni.healthheaven.model.dtos.doctor.DoctorDTO;
 import bg.softuni.healthheaven.model.dtos.doctor.DoctorExportDTO;
 import bg.softuni.healthheaven.services.CommentService;
@@ -10,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.Instant;
 import java.util.Arrays;
 import java.util.List;
 
@@ -33,8 +35,10 @@ public class DoctorController {
 
     @PostMapping("/doctors/{id}/comments")
     public ResponseEntity<CommentDTO> postComment(@RequestBody @Valid CommentDTO commentDTO,
-                              @PathVariable Long id) {
+                                                        @PathVariable Long id) {
+
         commentService.addComment(commentDTO, id);
+        commentDTO.setTimeOnPost(Instant.now().toString());
         return ResponseEntity.ok(commentDTO);
     }
 }

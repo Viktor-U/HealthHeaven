@@ -1,6 +1,7 @@
 package bg.softuni.healthheaven.services;
 
 import bg.softuni.healthheaven.model.dtos.commet.CommentDTO;
+import bg.softuni.healthheaven.model.dtos.commet.CommentExportDTO;
 import bg.softuni.healthheaven.model.entities.Comment;
 import bg.softuni.healthheaven.repositories.CommentRepository;
 import bg.softuni.healthheaven.repositories.DoctorRepository;
@@ -29,5 +30,7 @@ public class CommentService {
         comment.setTimeOnPost(Instant.now());
 
         commentRepository.save(comment);
+
+
     }
 }

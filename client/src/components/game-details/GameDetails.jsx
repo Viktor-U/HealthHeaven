@@ -1,15 +1,17 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import commentsApi from "../../api/comments-api";
 import "./game-details.css";
 import { useGetOneGames } from "../../hooks/useGames";
+import { useAuthContext } from "../../contexts/AuthContext";
+import { format } from "date-fns";
 
 export default function GameDetails(){
 
     const { gameId} = useParams();
-    const [username, setUsername] = useState('');
     const [comment, setComment] = useState('');
     const [game, setGame] = useGetOneGames(gameId);
+    const {email, isAuthenticated} = useAuthContext();
 
 
 
@@ -17,8 +19,8 @@ export default function GameDetails(){
     const commentSubmitHandler = async (e) => {
         e.preventDefault();
 
-       const newComment =  await commentsApi.create(gameId, username, comment);
-       //todo
+       const newComment =  await commentsApi.create(gameId, email, comment);
+       
        setGame(prevState => ({
             ...prevState,
             comments: {
@@ -27,7 +29,6 @@ export default function GameDetails(){
             }
        }));
 
-       setUsername("");
        setComment("");
     }
 
@@ -59,6 +60,9 @@ export default function GameDetails(){
                             ? Object.values(game.comments).map(comment => (
                                 <li key={comment.id} className="comment">
                                     <p>{comment.author}: {comment.content}</p>
+                                    <div>
+                                        <span className="data"> {format(comment.timeOnPost, "yyyy MMMM d,  H:MM")}</span>
+                                    </div>
                                 </li>
                             ))
                             : <p className="no-comment">No comments.</p>                    
@@ -78,28 +82,23 @@ export default function GameDetails(){
 
             {/* <!-- Bonus -->
             <!-- Add Comment ( Only for logged-in users, which is not creators of the current game ) --> */}
-            <article className="create-comment">
-                <label>Add new comment:</label>
-                <form className="form"  onSubmit={commentSubmitHandler}>
-                    <input
-                        type="text" 
-                        placeholder="Pesho" 
-                        name="username"
-                        onChange={(e) => setUsername(e.target.value)}
-                        value={username}
-                    />
+            {isAuthenticated && (
+                <article className="create-comment">
+                    <label>Add new comment:</label>
+                    <form className="form"  onSubmit={commentSubmitHandler}>
+        
 
-                    <textarea 
-                        name="comment" 
-                        placeholder="Comment......"
-                        onChange={(e) => setComment(e.target.value)}
-                        value={comment}
-                    ></textarea>
+                        <textarea 
+                            name="comment" 
+                            placeholder="Comment......"
+                            onChange={(e) => setComment(e.target.value)}
+                            value={comment}
+                        ></textarea>
 
-                    <input className="btn submit" type="submit" value="Add Comment"/>
-                </form>
-            </article>
-
+                        <input className="btn submit" type="submit" value="Add Comment"/>
+                    </form>
+                </article>
+            )};
         </section>
 
 

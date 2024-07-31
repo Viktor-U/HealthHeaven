@@ -31,7 +31,9 @@ public class DoctorService{
         List<DoctorDTO> result = new ArrayList<>();
 
         for (Doctor doctor : doctors) {
+
             result.add(modelMapper.map(doctor, DoctorDTO.class));
+
         }
 
         return result;
@@ -40,7 +42,8 @@ public class DoctorService{
     public DoctorExportDTO getOneDoctor(Long id) {
         DoctorExportDTO result = modelMapper.map(doctorRepository.findById(id), DoctorExportDTO.class);
         for (CommentExportDTO comment : result.getComments()) {
-            comment.setAuthor(commentRepository.findById(comment.getId()).get().getAuthor().getEmail());
+            comment.setAuthor(commentRepository.findById(comment.getId()).get().getAuthor().getFirstName()
+                    + " " + commentRepository.findById(comment.getId()).get().getAuthor().getLastName());
         }
         return result;
 
