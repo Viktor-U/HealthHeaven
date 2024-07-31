@@ -11,7 +11,7 @@ export default function GameDetails(){
     const { gameId} = useParams();
     const [comment, setComment] = useState('');
     const [game, setGame] = useGetOneGames(gameId);
-    const {email, isAuthenticated} = useAuthContext();
+    const {email, isAuthenticated, role} = useAuthContext();
 
 
 
@@ -33,6 +33,7 @@ export default function GameDetails(){
     }
 
 
+
     return(
        
         // <!--Details Page-->
@@ -50,6 +51,14 @@ export default function GameDetails(){
                 <p className="text">
                     {game.description}
                 </p>
+
+                   {/* <!-- Edit/Delete buttons ( Only for creator of this game )  --> */}
+                   {role === "ADMIN" &&(
+                <div className="buttons">
+                    <a href="#" className="button">Edit</a>
+                    <a href="#" className="button">Delete</a>
+                </div>
+                )}
 
                 {/* <!-- Bonus ( for Guests and Users ) --> */}
                 <div className="details-comments">
@@ -73,11 +82,7 @@ export default function GameDetails(){
                    
                 </div>
 
-                {/* <!-- Edit/Delete buttons ( Only for creator of this game )  --> */}
-                <div className="buttons">
-                    <a href="#" className="button">Edit</a>
-                    <a href="#" className="button">Delete</a>
-                </div>
+             
             </div>
 
             {/* <!-- Bonus -->
