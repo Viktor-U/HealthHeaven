@@ -1,16 +1,16 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import commentsApi from "../../api/comments-api";
-import "./game-details.css";
-import { useGetOneGames } from "../../hooks/useGames";
+import "./doctor-details.css";
+import { useGetOneDoctor } from "../../hooks/useDoctors";
 import { useAuthContext } from "../../contexts/AuthContext";
 import { format } from "date-fns";
 
-export default function GameDetails(){
+export default function DoctorDetails(){
 
     const { doctorId} = useParams();
     const [comment, setComment] = useState('');
-    const [game, setGame] = useGetOneGames(doctorId);
+    const [doctor, setDoctor] = useGetOneDoctor(doctorId);
     const {email, isAuthenticated, role} = useAuthContext();
     const [show, toggleShow] = useState(false);
 
@@ -22,7 +22,7 @@ export default function GameDetails(){
 
        const newComment =  await commentsApi.create(doctorId, email, comment);
        
-       setGame(prevState => ({
+       setDoctor(prevState => ({
             ...prevState,
             comments: {
                 ...prevState.comments,
@@ -37,19 +37,19 @@ export default function GameDetails(){
     return(
        
         // <!--Details Page-->
-        <section id="game-details">
+        <section id="doctor-details">
             <h1>Doctor Details</h1>
             <div className="info-section">
 
-                <div className="game-header">
-                    <img className="game-img" src={game.profilePictureURL} />
-                    <h1>{game.name}</h1>
-                    <span className="levels">PhoneNumber: {game.phoneNumber}</span>
-                    <p className="type">{game.specialization}</p>
+                <div className="doctor-header">
+                    <img className="doctor-img" src={doctor.profilePictureURL} />
+                    <h1>{doctor.name}</h1>
+                    <span className="levels">PhoneNumber: {doctor.phoneNumber}</span>
+                    <p className="type">{doctor.specialization}</p>
                 </div>
 
                 <p className="text">
-                    {game.description}
+                    {doctor.description}
                 </p>
 
                    {/* <!-- Edit/Delete buttons ( Only for creator of this game )  --> */}
@@ -68,8 +68,8 @@ export default function GameDetails(){
                     </button>
                     {show &&(
                         <ul>
-                            {Object.keys(game.comments || {}).length > 0
-                                ? Object.values(game.comments).map(comment => (
+                            {Object.keys(doctor.comments || {}).length > 0
+                                ? Object.values(doctor.comments).map(comment => (
                                     <li key={comment.id} className="comment">
                                         <p>{comment.author}: {comment.content}</p>
                                         <div>

@@ -1,11 +1,11 @@
-export default function GameEdit() {
+export default function DoctorEdit() {
     return (
         // <!-- Edit Page ( Only for the creator )-->
         <section id="edit-page" className="auth">
             <form id="edit">
                 <div className="container">
 
-                    <h1>Edit Game</h1>
+                    <h1>Edit Doctor</h1>
                     <label htmlFor="leg-title">Legendary title:</label>
                     <input type="text" id="title" name="title" value=""/>
 

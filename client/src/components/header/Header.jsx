@@ -1,8 +1,11 @@
 import {Link} from "react-router-dom";
 import { useAuthContext } from "../../contexts/AuthContext";
+import { getAccessToken } from "../../utils/authUtils";
 
 export default function Header(){
     const {isAuthenticated} = useAuthContext();
+
+
     return(
         <header>
             <h1><Link className="home" to="/">HealthHeavan</Link></h1>

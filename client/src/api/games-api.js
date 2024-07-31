@@ -4,15 +4,15 @@ const BASE_URL = 'http://localhost:8080/doctors'
 
 export const getAll = () => request.get(BASE_URL);
 
-export const getOne = (gameId) => request.get(`${BASE_URL}/${gameId}`);
+export const getOne = (doctorId) => request.get(`${BASE_URL}/${doctorId}`);
 
 
-export const create = (gameData) => request.post(BASE_URL, gameData);
+export const create = (doctorData) => request.post(BASE_URL, doctorData);
 
-const gamesAPI = {
+const doctorsAPI = {
     getAll,
     getOne,
     create
 };
 
-export default gamesAPI;
+export default doctorsAPI;

@@ -27,7 +27,7 @@
 .brand-logo {
     height: 100px;
     width: 100px;
-    background: url("../images/icon-gamepad-2.png");
+    background: url("../images/doktor-icon.jpg");
     margin: auto;
     border-radius: 50%;
     box-sizing: border-box;
@@ -130,24 +130,24 @@ label[for="terms"]>input {
 }
 
 
-/* CSS for error message span */
+
 .error-message {
-    color: #FF0000; /* Red text color */
-    font-weight: bold; /* Bold font */
-    font-size: 1em; /* Font size */
-    margin-top: 0.5em; /* Space above the message */
-    display: block; /* Display as block element */
+    color: #FF0000; 
+    font-weight: bold; 
+    font-size: 1em; 
+    margin-top: 0.5em;
+    display: block; 
 }
 
 .error-message::before {
-    content: "⚠️ "; /* Add a warning icon before the message */
-    font-size: 1em; /* Size of the icon */
+    content: "⚠️ ";
+    font-size: 1em; 
 }
 
 .error-message {
-    background-color: #FFEDED; /* Light red background */
-    border: 1px solid #FF0000; /* Red border */
-    padding: 1em; /* Padding inside the message box */
-    border-radius: 5px; /* Rounded corners */
-    box-shadow: 0 0 5px rgba(255, 0, 0, 0.2); /* Slight shadow for depth */
+    background-color: #FFEDED; 
+    border: 1px solid #FF0000; 
+    padding: 1em;
+    border-radius: 5px; 
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.2); 
 }

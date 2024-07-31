@@ -1,4 +1,4 @@
-#game-details {
+#doctor-details {
     position: relative;
     display: block;
     width: 980px;
@@ -8,7 +8,7 @@
     transition: all 0.4s;
 }
 
-#game-details>h1 {
+#doctor-details>h1 {
     color: #fff;
     font-family: "Agency FB";
     font-size: 55px;
@@ -28,7 +28,7 @@
     background-color: whitesmoke;
 }
 
-.game-header {
+.doctor-header {
     position: relative;
     padding: 25px;
     height: 40%;
@@ -64,12 +64,13 @@
     margin-left: 10px;
 }
 
-.game-img {
+.doctor-img {
     position: relative;
     float: left;
     margin-left: 15px;
     margin-right: 22px;
     height: 220px;
+    width: 220px;
     border-radius: 50%;
     box-shadow: 0 0 20px -10px rgba(0, 0, 0, 0.5);
 }

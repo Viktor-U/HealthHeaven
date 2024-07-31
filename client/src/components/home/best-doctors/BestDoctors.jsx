@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export default function LatestGame({
+export default function BestDoctors({
     id,
     name,
     profilePictureURL
@@ -16,7 +16,7 @@ export default function LatestGame({
                 <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
             </div>
             <div className="data-buttons">
-                <Link to={`/games/${id}/details`} className="btn details-btn">Details</Link>
+                <Link to={`/doctors/${id}/details`} className="btn details-btn">Details</Link>
             </div>
         </div>
     );

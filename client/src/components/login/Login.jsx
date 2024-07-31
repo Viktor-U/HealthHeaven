@@ -1,4 +1,4 @@
-import { useNavigate} from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 
 import { useLogin } from "../../hooks/useAuth";
 import { useForm } from "../../hooks/useForm";
@@ -53,7 +53,7 @@ export default function Login(){
                     />
                     <input type="submit" className="btn submit" value="Login"/>
                     <p className="field">
-                        <span>If you don't have profile click <a href="#">here</a></span>
+                        <span>If you don't have profile click <Link to="/register">here</Link></span>
                     </p>
                 </div>
             </form>

@@ -3,13 +3,14 @@ import { getAccessToken } from "../utils/authUtils";
 async function requester(method, url, data){
     const options = {};
 
-    const accessToken = getAccessToken()
+    const accessToken = getAccessToken();
 
     if (accessToken) {
         options.headers = {
             ...options.headers,
-            'token': accessToken
-        }
+            'Authorization': `Bearer ${accessToken}`,
+        };
+        
     }
 
     if (method !== 'GET'){

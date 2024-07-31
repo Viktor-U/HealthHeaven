@@ -1,25 +1,25 @@
 import { useNavigate } from "react-router-dom";
 import { useForm } from "../../hooks/useForm";
-import { useCreateGame } from "../../hooks/useGames";
+import { useCreateDoctor } from "../../hooks/useDoctors";
 
 
 const initialValues = {
-    title: '',
-    category: '',
-    maxLevel: '',
+    name: '',
+    specialization: '',
+    phoneNumber: '',
     imageUrl: '',
-    summary: '',
+    description: '',
 };
 
-export default function GameCreate(){
+export default function DoctorCreate(){
     const navigate = useNavigate();
 
-    const createGame = useCreateGame();
+    const createGame = useCreateDoctor();
 
     const createHandler = async (values) => {
         try{
-            const {id: gmaeId} = await createGame(values);
-            navigate(`/games/${gmaeId}/details`);
+            const {id: doctorId} = await createGame(values);
+            navigate(`/doctors/${doctorId}/details`);
         }catch(err) {
             // TODO: set error state and display error
             console.log(err.message);
@@ -39,38 +39,37 @@ export default function GameCreate(){
                 <div className="container">
 
                     <h1>Create Game</h1>
-                    <label htmlFor="leg-title">Legendary title:</label>
+                    <label htmlFor="doc-name">Doctor Name:</label>
                     <input 
                         type="text" 
-                        id="title" 
-                        name="title" 
-                        value={values.title}
+                        id="name" 
+                        name="name" 
+                        value={values.name}
                         onChange={changeHandler}
-                        placeholder="Enter game title..."
+                        placeholder="Enter doctor name..."
                     />
 
-                    <label htmlFor="category">Category:</label>
+                    <label htmlFor="specialization">Specialization:</label>
                     <input 
                         type="text" 
-                        id="category" 
-                        name="category" 
-                        value={values.category}
+                        id="specialization" 
+                        name="specialization" 
+                        value={values.specialization}
                         onChange={changeHandler}
-                        placeholder="Enter game category..."
+                        placeholder="Enter doctor specialization..."
                     />
 
-                    <label htmlFor="levels">MaxLevel:</label>
+                    <label htmlFor="phoneNumbers">Phone Number:</label>
                     <input 
-                        type="number" 
-                        id="maxLevel" 
-                        name="maxLevel" 
-                        value={values.maxLevel}
+                        type="text" 
+                        id="phoneNumber" 
+                        name="phoneNumber" 
+                        value={values.phoneNumber}
                         onChange={changeHandler}
-                        min="1" 
-                        placeholder="1"
+                        placeholder="0893664222"
                     />
 
-                    <label htmlFor="game-img">Image:</label>
+                    <label htmlFor="game-img">Profile PictureURL:</label>
                     <input 
                         type="text" 
                         id="imageUrl" 
@@ -81,11 +80,11 @@ export default function GameCreate(){
 
                     />
 
-                    <label htmlFor="summary">Summary:</label>
+                    <label htmlFor="description">Description:</label>
                     <textarea 
-                        name="summary" 
-                        id="summary"
-                        value={values.summary}
+                        name="description" 
+                        id="description"
+                        value={values.description}
                         onChange={changeHandler}    
                     >
                     </textarea>
