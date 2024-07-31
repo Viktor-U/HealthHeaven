@@ -7,11 +7,11 @@ export default function Header(){
         <header>
             <h1><Link className="home" to="/">HealthHeavan</Link></h1>
             <nav>
-                <Link to="/games">All Doctors</Link>
+                <Link to="/doctors">All Doctors</Link>
                 {isAuthenticated
                     ?(
                         <div id="user">
-                            <Link to="/games/create">Create Game</Link>
+                            <Link to="/doctors/create">Create Doctor</Link>
                             <Link to="/logout">Logout</Link>
                         </div>
                     )

@@ -14,7 +14,7 @@ export default function GameListItem({
                 <img src={profilePictureURL}/>
                 <h6>{name}</h6>
                 <h2>{specialization}</h2>
-                <Link to={`/games/${id}/details`} className="details-button">Details</Link>
+                <Link to={`/doctors/${id}/details`} className="details-button">Details</Link>
             </div>
         </div>
     );

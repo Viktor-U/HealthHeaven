@@ -37,8 +37,8 @@ public class DoctorController {
     public ResponseEntity<CommentDTO> postComment(@RequestBody @Valid CommentDTO commentDTO,
                                                         @PathVariable Long id) {
 
-        commentService.addComment(commentDTO, id);
-        commentDTO.setTimeOnPost(Instant.now().toString());
-        return ResponseEntity.ok(commentDTO);
+        CommentDTO result = commentService.addComment(commentDTO, id);
+
+        return ResponseEntity.ok(result);
     }
 }

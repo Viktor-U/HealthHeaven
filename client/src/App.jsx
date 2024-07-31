@@ -23,9 +23,9 @@ function App() {
                   <Route path='/' element={<Home/>}/>
                   <Route path='/login' element={<Login/>}/>
                   <Route path='/register' element={<Register/>}/>
-                  <Route path='/games' element={<GameList/>}/>
-                  <Route path='/games/:gameId/details' element={<GameDetails/>}/>
-                  <Route path='/games/create' element={<GameCreate/>}/>
+                  <Route path='/doctors' element={<GameList/>}/>
+                  <Route path='/doctors/:doctorId/details' element={<GameDetails/>}/>
+                  <Route path='/doctors/create' element={<GameCreate/>}/>
                   <Route path='/logout' element={<Logout/>}/>
               </Routes>
           </main>

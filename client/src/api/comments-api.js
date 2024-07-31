@@ -2,9 +2,9 @@ import requester from "./requester"
 
 const BASE_URL = 'http://localhost:8080/doctors';
 
-const buildUrl = (gameId) => `${BASE_URL}/${gameId}/comments`;
+const buildUrl = (doctorId) => `${BASE_URL}/${doctorId}/comments`;
 
-const create = async (gameId, author, content) => requester.post(buildUrl(gameId), { author, content });
+const create = async (doctorId, author, content) => requester.post(buildUrl(doctorId), { author, content });
 
 export default {
     create,

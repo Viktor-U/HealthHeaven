@@ -8,10 +8,11 @@ import { format } from "date-fns";
 
 export default function GameDetails(){
 
-    const { gameId} = useParams();
+    const { doctorId} = useParams();
     const [comment, setComment] = useState('');
-    const [game, setGame] = useGetOneGames(gameId);
+    const [game, setGame] = useGetOneGames(doctorId);
     const {email, isAuthenticated, role} = useAuthContext();
+    const [show, toggleShow] = useState(false);
 
 
 
@@ -19,7 +20,7 @@ export default function GameDetails(){
     const commentSubmitHandler = async (e) => {
         e.preventDefault();
 
-       const newComment =  await commentsApi.create(gameId, email, comment);
+       const newComment =  await commentsApi.create(doctorId, email, comment);
        
        setGame(prevState => ({
             ...prevState,
@@ -33,18 +34,17 @@ export default function GameDetails(){
     }
 
 
-
     return(
        
         // <!--Details Page-->
         <section id="game-details">
-            <h1>Game Details</h1>
+            <h1>Doctor Details</h1>
             <div className="info-section">
 
                 <div className="game-header">
                     <img className="game-img" src={game.profilePictureURL} />
                     <h1>{game.name}</h1>
-                    <span className="levels">MaxLevel: {game.phoneNumber}</span>
+                    <span className="levels">PhoneNumber: {game.phoneNumber}</span>
                     <p className="type">{game.specialization}</p>
                 </div>
 
@@ -62,23 +62,26 @@ export default function GameDetails(){
 
                 {/* <!-- Bonus ( for Guests and Users ) --> */}
                 <div className="details-comments">
-                    <h2>Comments:</h2>
-
-                    <ul>
-                        {Object.keys(game.comments || {}).length > 0
-                            ? Object.values(game.comments).map(comment => (
-                                <li key={comment.id} className="comment">
-                                    <p>{comment.author}: {comment.content}</p>
-                                    <div>
-                                        <span className="data"> {format(comment.timeOnPost, "yyyy MMMM d,  H:MM")}</span>
-                                    </div>
-                                </li>
-                            ))
-                            : <p className="no-comment">No comments.</p>                    
-                        }
-              
-                    </ul>
-
+                    <h2>Comments:</h2> 
+                    <button className="styled-button" onClick={() => toggleShow(!show)}>
+                        {show ? "Hide" : "Show"}
+                    </button>
+                    {show &&(
+                        <ul>
+                            {Object.keys(game.comments || {}).length > 0
+                                ? Object.values(game.comments).map(comment => (
+                                    <li key={comment.id} className="comment">
+                                        <p>{comment.author}: {comment.content}</p>
+                                        <div>
+                                            <span className="data"> {format(comment.timeOnPost, "yyyy MMMM d,  H:MM")}</span>
+                                        </div>
+                                    </li>
+                                ))
+                                : <p className="no-comment">No comments.</p>                    
+                            }
+                
+                        </ul>
+                    )}
                    
                 </div>
 

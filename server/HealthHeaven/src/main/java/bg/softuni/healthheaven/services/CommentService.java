@@ -3,6 +3,7 @@ package bg.softuni.healthheaven.services;
 import bg.softuni.healthheaven.model.dtos.commet.CommentDTO;
 import bg.softuni.healthheaven.model.dtos.commet.CommentExportDTO;
 import bg.softuni.healthheaven.model.entities.Comment;
+import bg.softuni.healthheaven.model.entities.User;
 import bg.softuni.healthheaven.repositories.CommentRepository;
 import bg.softuni.healthheaven.repositories.DoctorRepository;
 import bg.softuni.healthheaven.repositories.UserRepository;
@@ -22,7 +23,7 @@ public class CommentService {
     private final ModelMapper modelMapper;
 
 
-    public void addComment(CommentDTO commentDTO, Long id) {
+    public CommentDTO addComment(CommentDTO commentDTO, Long id) {
 
         Comment comment = modelMapper.map(commentDTO, Comment.class);
         comment.setAuthor(userRepository.findByEmail(commentDTO.getAuthor()).get());
@@ -31,6 +32,11 @@ public class CommentService {
 
         commentRepository.save(comment);
 
+        User user = userRepository.findByEmail(commentDTO.getAuthor()).get();
+        commentDTO.setTimeOnPost(Instant.now().toString());
+        commentDTO.setAuthor(user.getFirstName()+ " " + user.getLastName());
+
+        return commentDTO;
 
     }
 }
