@@ -44,8 +44,8 @@ export default function DoctorDetails(){
                 <div className="doctor-header">
                     <img className="doctor-img" src={doctor.profilePictureURL} />
                     <h1>{doctor.name}</h1>
-                    <span className="levels">PhoneNumber: {doctor.phoneNumber}</span>
-                    <p className="type">{doctor.specialization}</p>
+                    <span className="levels">Phone Number: {doctor.phoneNumber}</span>
+                    <p className="type">Specialization: {doctor.specialization}</p>
                 </div>
 
                 <p className="text">
