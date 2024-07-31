@@ -14,7 +14,6 @@ import java.util.List;
 public class MessagesController {
 
     @GetMapping("/messages")
-    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public ResponseEntity<List<String>> message() {
         return ResponseEntity.ok(Arrays.asList("first", "second", "third"));
     }

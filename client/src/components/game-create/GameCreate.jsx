@@ -14,7 +14,7 @@ const initialValues = {
 export default function GameCreate(){
     const navigate = useNavigate();
 
-    const createGame = useCreateGame
+    const createGame = useCreateGame();
 
     const createHandler = async (values) => {
         try{
