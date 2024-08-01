@@ -17,7 +17,11 @@ public class Item extends BaseEntity{
     @Column(nullable = false)
     private String name;
 
+    @Column(nullable = false)
     private Double price;
+
+    @Column(name = "image-url", columnDefinition = "text")
+    private String imageURL;
 
     @Column(nullable = false)
     private String description;

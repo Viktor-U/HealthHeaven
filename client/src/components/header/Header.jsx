@@ -3,7 +3,7 @@ import { useAuthContext } from "../../contexts/AuthContext";
 import { getAccessToken } from "../../utils/authUtils";
 
 export default function Header(){
-    const {isAuthenticated} = useAuthContext();
+    const {isAuthenticated, role} = useAuthContext();
 
 
     return(
@@ -11,10 +11,16 @@ export default function Header(){
             <h1><Link className="home" to="/">HealthHeavan</Link></h1>
             <nav>
                 <Link to="/doctors">All Doctors</Link>
+                <Link to="/shop">Shop</Link>
+
+                {role==="ADMIN"
+                    ?(<Link to="/doctors/create">Create Doctor</Link>)
+                    :(<></>)
+                }
+             
                 {isAuthenticated
                     ?(
                         <div id="user">
-                            <Link to="/doctors/create">Create Doctor</Link>
                             <Link to="/logout">Logout</Link>
                         </div>
                     )
@@ -26,7 +32,6 @@ export default function Header(){
                     )
                 
                 }
-             
                 
             </nav>
         </header>
