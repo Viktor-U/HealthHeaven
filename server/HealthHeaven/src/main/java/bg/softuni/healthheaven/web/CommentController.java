@@ -18,6 +18,7 @@ public class CommentController {
     @PostMapping("/doctors/{id}/comments")
     public ResponseEntity<CommentDTO> postComment(@RequestBody @Valid CommentDTO commentDTO,
                                                   @PathVariable Long id) {
-        CommentDTO result = commentService.addComment(commentDTO, id);        return ResponseEntity.ok(result);
+        CommentDTO result = commentService.addComment(commentDTO, id);
+        return ResponseEntity.ok(result);
     }
 }

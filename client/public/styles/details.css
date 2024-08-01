@@ -60,11 +60,7 @@
 .type {
     display: inline-block;
     color: #555;
-    padding: 7px;
-    background-color: #93e3ac;
-    border-radius: 5px;
-    border: 1px solid rgba(218, 181, 181, 0.829);
-    margin-left: 10px;
+    font-size: 1.2em;
 }
 
 .doctor-img {
@@ -91,8 +87,12 @@
 }
 
 .text {
-    font-size: 25px;
+    font-size: 20px;
+    white-space: pre-wrap;
     color: #545454;
+    overflow: hidden;
+    position: relative;
+    bottom: 60px;
 }
 
 .movie_social {
@@ -116,15 +116,16 @@
 
 .button {
     height: 15%;
-    background-color: #54557b;
+    background-color: #45a049;
     padding: 14px;
+    border-radius: 10px;
     margin-top: auto;
     font-size: 21px;
     color: rgb(255, 255, 255);
 }
 
 .button:hover {
-    background-color: #6f5d9c;
+    background-color: #134f1e;
     color: white;
 }
 

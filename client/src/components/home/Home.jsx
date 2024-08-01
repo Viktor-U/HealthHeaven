@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import './home.css';
-import doctorsAPI from '../../api/games-api';
+import doctorsAPI from '../../api/doctors-api';
 import BestDoctors from './best-doctors/BestDoctors';
 
 export default function Home() {

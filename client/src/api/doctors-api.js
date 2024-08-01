@@ -9,10 +9,13 @@ export const getOne = (doctorId) => request.get(`${BASE_URL}/${doctorId}`);
 
 export const create = (doctorData) => request.post(BASE_URL, doctorData);
 
+export const deleteDoctor = (doctorId) => request.del(`${BASE_URL}/${doctorId}`)
+
 const doctorsAPI = {
     getAll,
     getOne,
-    create
+    create,
+    deleteDoctor,
 };
 
 export default doctorsAPI;

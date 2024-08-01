@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams , Link} from "react-router-dom";
 import commentsApi from "../../api/comments-api";
 import "./doctor-details.css";
 import { useGetOneDoctor } from "../../hooks/useDoctors";
@@ -44,19 +44,20 @@ export default function DoctorDetails(){
                 <div className="doctor-header">
                     <img className="doctor-img" src={doctor.profilePictureURL} />
                     <h1>{doctor.name}</h1>
-                    <span className="levels">Phone Number: {doctor.phoneNumber}</span>
                     <p className="type">Specialization: {doctor.specialization}</p>
+                    <span className="levels">Phone Number: {doctor.phoneNumber}</span>
                 </div>
 
-                <p className="text">
+                <p className="text" >
                     {doctor.description}
                 </p>
+                
 
                    {/* <!-- Edit/Delete buttons ( Only for creator of this game )  --> */}
                    {role === "ADMIN" &&(
                 <div className="buttons">
-                    <a href="#" className="button">Edit</a>
-                    <a href="#" className="button">Delete</a>
+                    <Link to="/doctors/edit" className="button">Edit</Link>
+                    <Link to={`/doctors/${doctorId}/delete`} className="button">Delete</Link>
                 </div>
                 )}
 
@@ -77,7 +78,7 @@ export default function DoctorDetails(){
                                         </div>
                                     </li>
                                 ))
-                                : <p className="no-comment">No comments.</p>                    
+                                : <p className="no-comment">No comments yet.</p>                    
                             }
                 
                         </ul>

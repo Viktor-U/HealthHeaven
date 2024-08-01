@@ -7,18 +7,18 @@ const initialValues = {
     name: '',
     specialization: '',
     phoneNumber: '',
-    imageUrl: '',
+    profilePictureURL: '',
     description: '',
 };
 
 export default function DoctorCreate(){
     const navigate = useNavigate();
 
-    const createGame = useCreateDoctor();
+    const createDoctor = useCreateDoctor();
 
     const createHandler = async (values) => {
         try{
-            const {id: doctorId} = await createGame(values);
+            const {id: doctorId} = await createDoctor(values);
             navigate(`/doctors/${doctorId}/details`);
         }catch(err) {
             // TODO: set error state and display error
@@ -39,7 +39,7 @@ export default function DoctorCreate(){
                 <div className="container">
 
                     <h1>Create Game</h1>
-                    <label htmlFor="doc-name">Doctor Name:</label>
+                    <label className="label-create-edit" htmlFor="doc-name">Doctor Name:</label>
                     <input 
                         type="text" 
                         id="name" 
@@ -49,7 +49,7 @@ export default function DoctorCreate(){
                         placeholder="Enter doctor name..."
                     />
 
-                    <label htmlFor="specialization">Specialization:</label>
+                    <label className="label-create-edit" htmlFor="specialization">Specialization:</label>
                     <input 
                         type="text" 
                         id="specialization" 
@@ -59,7 +59,7 @@ export default function DoctorCreate(){
                         placeholder="Enter doctor specialization..."
                     />
 
-                    <label htmlFor="phoneNumbers">Phone Number:</label>
+                    <label className="label-create-edit" htmlFor="phoneNumbers">Phone Number:</label>
                     <input 
                         type="text" 
                         id="phoneNumber" 
@@ -69,18 +69,18 @@ export default function DoctorCreate(){
                         placeholder="0893664222"
                     />
 
-                    <label htmlFor="game-img">Profile PictureURL:</label>
+                    <label className="label-create-edit" htmlFor="doctor-img">Profile PictureURL:</label>
                     <input 
                         type="text" 
-                        id="imageUrl" 
-                        name="imageUrl"
-                        value={values.imageUrl}
+                        id="profilePictureURL" 
+                        name="profilePictureURL"
+                        value={values.profilePictureURL}
                         onChange={changeHandler}
                         placeholder="Upload a photo..."
 
                     />
 
-                    <label htmlFor="description">Description:</label>
+                    <label className="label-create-edit" htmlFor="description">Description:</label>
                     <textarea 
                         name="description" 
                         id="description"
@@ -88,7 +88,7 @@ export default function DoctorCreate(){
                         onChange={changeHandler}    
                     >
                     </textarea>
-                    <input className="btn submit" type="submit" value="Create Game"/>
+                    <input className="btn submit" type="submit" value="Create Doctor"/>
                 </div>
             </form>
         </section>

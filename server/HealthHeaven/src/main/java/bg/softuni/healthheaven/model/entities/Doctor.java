@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -26,8 +27,8 @@ public class Doctor extends BaseEntity{
     @Column(columnDefinition = "text")
     private String description;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "doctor_id")
-    private List<Comment> comments;
+    private List<Comment> comments = new ArrayList<Comment>();
 
 }

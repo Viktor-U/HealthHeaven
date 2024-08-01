@@ -10,6 +10,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -28,12 +29,24 @@ public class DoctorController {
     }
 
     @GetMapping("/doctors/{id}")
-    public ResponseEntity<DoctorExportDTO> getOneDoctor(@PathVariable Long id) {
+    public ResponseEntity<DoctorExportDTO> getOneDoctor(@PathVariable Long id) throws Exception {
 
         return ResponseEntity.ok(doctorService.getOneDoctor(id));
     }
 
+    @PostMapping("/doctors")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ResponseEntity<DoctorExportDTO> createDoctor(@RequestBody @Valid DoctorDTO doctorDTO) {
+        DoctorExportDTO result = doctorService.createDoctor(doctorDTO);
 
+        return ResponseEntity.ok(result);
+    }
+
+    @DeleteMapping("/doctors/{id}")
+    public void deleteDoctor(@PathVariable Long id) {
+        doctorService.deleteDoctor(id);
+
+    }
 
 
 }

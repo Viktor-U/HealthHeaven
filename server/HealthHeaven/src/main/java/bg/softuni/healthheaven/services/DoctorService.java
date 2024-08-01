@@ -40,13 +40,29 @@ public class DoctorService{
         return result;
     }
 
-    public DoctorExportDTO getOneDoctor(Long id) {
-        DoctorExportDTO result = modelMapper.map(doctorRepository.findById(id), DoctorExportDTO.class);
-        for (CommentExportDTO comment : result.getComments()) {
-            comment.setAuthor(commentRepository.findById(comment.getId()).get().getAuthor().getFirstName()
-                    + " " + commentRepository.findById(comment.getId()).get().getAuthor().getLastName());
+    public DoctorExportDTO getOneDoctor(Long id) throws Exception {
+        DoctorExportDTO result = modelMapper.map(
+                doctorRepository.findById(id).orElseThrow(() -> new Exception("Doctor not found")),
+                DoctorExportDTO.class
+        );
+        if (!result.getComments().isEmpty()) {
+            for (CommentExportDTO comment : result.getComments()) {
+                comment.setAuthor(commentRepository.findById(comment.getId()).get().getAuthor().getFirstName()
+                        + " " + commentRepository.findById(comment.getId()).get().getAuthor().getLastName());
+            }
         }
         return result;
 
+    }
+
+    public DoctorExportDTO createDoctor(DoctorDTO doctorDTO) {
+        Doctor doctor = modelMapper.map(doctorDTO, Doctor.class);
+        Doctor savedDoctor = doctorRepository.save(doctor);
+
+        return modelMapper.map(savedDoctor, DoctorExportDTO.class);
+    }
+
+    public void deleteDoctor(Long id) {
+        doctorRepository.deleteById(id);
     }
 }

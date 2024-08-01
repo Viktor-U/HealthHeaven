@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -26,6 +27,6 @@ public class DoctorExportDTO {
 
     private String description;
 
-    private List<CommentExportDTO> comments;
+    private List<CommentExportDTO> comments = new ArrayList<>();
 
 }

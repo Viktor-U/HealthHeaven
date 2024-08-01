@@ -7,8 +7,7 @@
     padding: 40px;
     box-sizing: border-box;
     text-align: center;
-    background: #3e4443;
-    box-shadow: 0px 0px 32px 0px #32485e, -14px -14px 20px #191c21;
+    box-shadow: 0px 0px 32px 0px #32485e, -14px -14px 20px #81a8eb;
 }
 
 input[type="text"] {
@@ -37,3 +36,10 @@ textarea {
     box-shadow: inset 6px 6px 6px #c0c2c5, inset -6px -6px 6px white;
 }
 
+.label-create-edit {
+    margin-bottom: 8px;
+    font-size: 27px;
+    color: rgb(73, 73, 73);
+    margin-top: 13px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}

@@ -9,6 +9,8 @@ import Register from './components/register/Register';
 import DoctorList from './components/doctor-list/DoctorList';
 import DoctorCreate from './components/doctor-create/DoctorCreate';
 import DoctorDetails from './components/doctor-details/DoctorDetails';
+import DoctorEdit from './components/doctor-edit/DoctorEdit';
+import DeleteDoctor from './components/doctor-delete/DeleteDoctor';
 
 
 function App() {
@@ -26,6 +28,8 @@ function App() {
                   <Route path='/doctors' element={<DoctorList/>}/>
                   <Route path='/doctors/:doctorId/details' element={<DoctorDetails/>}/>
                   <Route path='/doctors/create' element={<DoctorCreate/>}/>
+                  <Route path='/doctors/edit' element={<DoctorEdit/>}/>
+                  <Route path='/doctors/:doctorId/delete' element={<DeleteDoctor/>}/>
                   <Route path='/logout' element={<Logout/>}/>
               </Routes>
           </main>

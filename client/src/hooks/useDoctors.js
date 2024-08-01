@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import doctorsAPI from "../api/games-api";
+import doctorsAPI from "../api/doctors-api";
 
 export default function useGetAllDoctors() {
     const [doctors, setDoctors] = useState([]);
@@ -35,8 +35,12 @@ export function useGetOneDoctor(doctorId) {
 
 export function useCreateDoctor() {
     const doctorCreateHandler = (doctorData) => doctorsAPI.create(doctorData);
-    
-
+      
     return doctorCreateHandler;
 
+}
+
+export function  useDeleteDoctor(doctorId) {
+    
+    return doctorsAPI.deleteDoctor(doctorId);
 }
