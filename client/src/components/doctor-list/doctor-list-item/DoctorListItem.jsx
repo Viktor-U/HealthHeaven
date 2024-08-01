@@ -9,8 +9,8 @@ export default function DoctorListItem({
 }) {
 
     return (
-        <div className="allGames">
-            <div className="allGames-info">
+        <div className="allDocotors">
+            <div className="allDocotors-info">
                 <img src={profilePictureURL}/>
                 <h6>{name}</h6>
                 <h2>{specialization}</h2>

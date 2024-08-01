@@ -18,7 +18,7 @@
     text-align: center;
 }
 
-.allGames {
+.allDocotors {
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
@@ -31,13 +31,13 @@
     height: auto;
 }
 
-.allGames-info {
+.allDocotors-info {
     padding: 30px;
     position: relative;
     width: 100%;
 }
 
-.allGames-info>img {
+.allDocotors-info>img {
     margin-top: -10px;
     border-radius: 50%;
     height: 140px;
@@ -49,13 +49,13 @@
     width: 140px;
 }
 
-.allGames-info>h6 {
+.allDocotors-info>h6 {
     font-size: 20px;
     font-weight: 750;
     color: #161618;
 }
 
-.allGames-info>h2 {
+.allDocotors-info>h2 {
     font-size: 20px;
     font-weight: 750;
     color: #161618;

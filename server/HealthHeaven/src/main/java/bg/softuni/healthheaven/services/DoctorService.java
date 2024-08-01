@@ -62,7 +62,25 @@ public class DoctorService{
         return modelMapper.map(savedDoctor, DoctorExportDTO.class);
     }
 
+    public DoctorExportDTO editDoctor(DoctorDTO doctorDTO) {
+        Optional<Doctor> optionalDoctor = doctorRepository.findById(doctorDTO.getId());
+        if (optionalDoctor.isPresent()) {
+            Doctor doctor = optionalDoctor.get();
+
+            doctor.setName(doctorDTO.getName());
+            doctor.setSpecialization(doctorDTO.getSpecialization());
+            doctor.setProfilePictureURL(doctorDTO.getProfilePictureURL());
+            doctor.setPhoneNumber(doctorDTO.getPhoneNumber());
+            doctor.setDescription(doctorDTO.getDescription());
+            doctorRepository.save(doctor);
+
+            return modelMapper.map(doctor, DoctorExportDTO.class);
+        }
+        return null;
+
+    }
     public void deleteDoctor(Long id) {
         doctorRepository.deleteById(id);
     }
+
 }

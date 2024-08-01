@@ -72,7 +72,7 @@
     width: auto;
 }
 
-.game {
+.doctor {
     box-shadow: 0px 0px 30px 0px;
     margin-top: 20px;
     padding: 50px;
@@ -96,10 +96,11 @@
 }
 
 .image-wrap>img {
+    width: 400px;
     max-width: 100%;
 }
 
-.game>h3 {
+.doctor>h3 {
     font-family: "Agency FB";
     font-size: 42px;
     font-weight: 700;
@@ -110,14 +111,6 @@
     transition: all 0.5s ease-out;
     text-align: center;
     text-transform: uppercase;
-}
-
-.game-content>h4 {
-    color: #c2d4f8;
-    font-size: 24px;
-    text-align: center;
-    font-weight: 700;
-    line-height: normal;
 }
 
 .rating {
@@ -138,7 +131,7 @@
 }
 
 .details-btn {
-    background-color: #fd5454;
+    background-color: #0ed307;
     font-size: 1.4rem;
     padding-top: 20px;
     margin-top: 10px;

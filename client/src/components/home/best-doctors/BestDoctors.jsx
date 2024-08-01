@@ -7,7 +7,7 @@ export default function BestDoctors({
 }) {
     return(
 
-        <div className="game">
+        <div className="doctor">
             <div className="image-wrap">
                 <img src={profilePictureURL}/>
             </div>

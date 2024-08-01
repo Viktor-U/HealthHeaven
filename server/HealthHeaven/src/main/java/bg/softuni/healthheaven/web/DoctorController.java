@@ -41,6 +41,12 @@ public class DoctorController {
 
         return ResponseEntity.ok(result);
     }
+    @PostMapping("/doctors/edit")
+    public ResponseEntity<DoctorExportDTO> editDoctor(@RequestBody @Valid DoctorDTO doctorDTO) {
+        DoctorExportDTO result = doctorService.editDoctor(doctorDTO);
+
+        return ResponseEntity.ok(result);
+    }
 
     @DeleteMapping("/doctors/{id}")
     @PreAuthorize("hasAuthority('ADMIN')")

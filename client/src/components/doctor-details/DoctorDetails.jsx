@@ -53,10 +53,9 @@ export default function DoctorDetails(){
                 </p>
                 
 
-                   {/* <!-- Edit/Delete buttons ( Only for creator of this game )  --> */}
                    {role === "ADMIN" &&(
                 <div className="buttons">
-                    <Link to="/doctors/edit" className="button">Edit</Link>
+                    <Link to={`/doctors/${doctorId}/edit`} className="button">Edit</Link>
                     <Link to={`/doctors/${doctorId}/delete`} className="button second">Delete</Link>
                 </div>
                 )}
@@ -68,7 +67,7 @@ export default function DoctorDetails(){
                         {show ? "Hide" : "Show"}
                     </button>
                     {show &&(
-                        <ul>
+                        <ul className="comments">
                             {Object.keys(doctor.comments || {}).length > 0
                                 ? Object.values(doctor.comments).map(comment => (
                                     <li key={comment.id} className="comment">
@@ -89,8 +88,7 @@ export default function DoctorDetails(){
              
             </div>
 
-            {/* <!-- Bonus -->
-            <!-- Add Comment ( Only for logged-in users, which is not creators of the current game ) --> */}
+          
             {isAuthenticated && (
                 <article className="create-comment">
                     <label>Add new comment:</label>

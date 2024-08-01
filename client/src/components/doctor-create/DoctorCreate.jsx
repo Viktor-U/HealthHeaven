@@ -38,7 +38,7 @@ export default function DoctorCreate(){
             <form id="create" onSubmit={submitHandler} >
                 <div className="container">
 
-                    <h1>Create Game</h1>
+                    <h1>Create Doctor</h1>
                     <label className="label-create-edit" htmlFor="doc-name">Doctor Name:</label>
                     <input 
                         type="text" 

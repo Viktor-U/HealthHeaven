@@ -3,7 +3,7 @@ import useGetAllDoctors from '../../hooks/useDoctors';
 
 export default function DoctorList(){
 
-    const [games] = useGetAllDoctors();
+    const [doctors] = useGetAllDoctors();
 
 
     return(
@@ -11,8 +11,8 @@ export default function DoctorList(){
         <section id="catalog-page">
             <h1>All Doctors</h1>
 
-          {games.length > 0 
-                ? games.map(game => <DoctorListItem key={game.id} {...game} />)
+          {doctors.length > 0 
+                ? doctors.map(doctor => <DoctorListItem key={doctor.id} {...doctor} />)
                 : <h3 className="no-articles">No doctors on work yet</h3>
           }
         </section>

@@ -8,7 +8,7 @@
 }
 
 .details-comments {
-    display: table-cell;
+    display: block;
 }
 
 .create-comment {
@@ -33,7 +33,7 @@
 }
 
 .info-section>.details-comments li {
-    width: 85%;
+    width: 80%;
     display: inline-block;
     position: static;
     margin: 20px auto 25px auto;

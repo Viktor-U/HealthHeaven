@@ -11,11 +11,14 @@ export const create = (doctorData) => request.post(BASE_URL, doctorData);
 
 export const deleteDoctor = (doctorId) => request.del(`${BASE_URL}/${doctorId}`)
 
+export const edit  = (doctorData) => request.post(`${BASE_URL}/edit`, doctorData)
+
 const doctorsAPI = {
     getAll,
     getOne,
     create,
     deleteDoctor,
+    edit,
 };
 
 export default doctorsAPI;

@@ -40,6 +40,13 @@ export function useCreateDoctor() {
 
 }
 
+export function useEditDoctor() {
+    const doctorEditHandler = (doctorData) => doctorsAPI.edit(doctorData);
+      
+    return doctorEditHandler;
+
+}
+
 export function  useDeleteDoctor(doctorId) {
     
     const useDeleteDoc =  doctorsAPI.deleteDoctor(doctorId);

@@ -34,14 +34,14 @@
     height: 40%;
 }
 
-.game_header>h1 {
+.doctor-header>h1 {
     color: black;
     margin-top: 5px;
     font-size: 36px;
     font-weight: 400;
 }
 
-.game_header>h4 {
+.doctor-header>h4 {
     color: #555;
     font-size: 23px;
     font-weight: 400;
@@ -80,11 +80,6 @@
     height: 50%;
 }
 
-.game-summary {
-    margin-top: 15px;
-    padding: 60px;
-    height: 50%;
-}
 
 .text {
     font-size: 20px;
