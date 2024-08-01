@@ -57,7 +57,7 @@ export default function DoctorDetails(){
                    {role === "ADMIN" &&(
                 <div className="buttons">
                     <Link to="/doctors/edit" className="button">Edit</Link>
-                    <Link to={`/doctors/${doctorId}/delete`} className="button">Delete</Link>
+                    <Link to={`/doctors/${doctorId}/delete`} className="button second">Delete</Link>
                 </div>
                 )}
 

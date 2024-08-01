@@ -25,9 +25,14 @@
     
   }
   
-  
-  .styled-button:hover {
+.styled-button:hover {
     background-color: #134f1e; 
-  }
+}
   
+.second{
+  background-color: red;
+}
+.second:hover{
+  background-color: #621e20;
+}
 

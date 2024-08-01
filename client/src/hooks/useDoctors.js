@@ -42,5 +42,6 @@ export function useCreateDoctor() {
 
 export function  useDeleteDoctor(doctorId) {
     
-    return doctorsAPI.deleteDoctor(doctorId);
+    const useDeleteDoc =  doctorsAPI.deleteDoctor(doctorId);
+    return useDeleteDoc;
 }

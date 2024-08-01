@@ -40,7 +40,7 @@ export default function Login(){
                         name="email"
                         value={values.email}
                         onChange={changeHandler} 
-                        placeholder="Sokka@gmail.com"
+                        placeholder="mariaXD@gmail.com"
                     />
 
                     <label htmlFor="login-pass">Password:</label>

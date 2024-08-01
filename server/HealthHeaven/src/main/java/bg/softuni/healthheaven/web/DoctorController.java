@@ -43,6 +43,7 @@ public class DoctorController {
     }
 
     @DeleteMapping("/doctors/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void deleteDoctor(@PathVariable Long id) {
         doctorService.deleteDoctor(id);
 
