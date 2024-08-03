@@ -5,7 +5,9 @@ import bg.softuni.healthheaven.model.dtos.IdRequestDTO;
 import bg.softuni.healthheaven.model.dtos.shop.ItemDTO;
 import bg.softuni.healthheaven.model.dtos.shop.ItemOrderDTO;
 import bg.softuni.healthheaven.model.dtos.shop.OrderDTO;
+import bg.softuni.healthheaven.model.entities.BaseEntity;
 import bg.softuni.healthheaven.model.entities.Item;
+import bg.softuni.healthheaven.model.entities.Rating;
 import bg.softuni.healthheaven.model.entities.User;
 import bg.softuni.healthheaven.repositories.ItemRepository;
 import bg.softuni.healthheaven.repositories.UserRepository;
@@ -31,24 +33,40 @@ public class ItemService {
 
         for (Item item : items) {
 
-            result.add(modelMapper.map(item, ItemDTO.class));
-
+            ItemDTO map = mapToItemDTO(item);
+            result.add(map);
         }
 
         return result;
     }
 
+    private ItemDTO mapToItemDTO(Item item) {
+        ItemDTO map = modelMapper.map(item, ItemDTO.class);
+
+        int itemRates = 0;
+        for (Rating rating : item.getRatings()) {
+            itemRates += rating.getRating();
+        }
+        if (!item.getRatings().isEmpty()) {
+            map.setRating(itemRates / item.getRatings().size());
+        }else {
+            map.setRating(1);
+        }
+        return map;
+    }
+
     public ItemDTO getOneItem(Long id) {
 
         Item item = itemRepository.findById(id).get();
-
-        return modelMapper.map(item, ItemDTO.class);
+        return mapToItemDTO(item);
     }
 
-    public Set<ItemOrderDTO> getAllItemsOnUser(Long id) {
+    public List<ItemOrderDTO> getAllItemsOnUser(Long id) {
 
         Optional<User> user = userRepository.findById(id);
         List<Item> items = user.get().getItems();
+
+
 
         Map<Item, Integer> itemMap = new HashMap<>();
 
@@ -63,7 +81,7 @@ public class ItemService {
 
         }
 
-        Set<ItemOrderDTO> result = new LinkedHashSet<>();
+        List<ItemOrderDTO> result = new ArrayList<>();
 
         itemMap.forEach((key, value) -> {
             ItemOrderDTO itemOrderDTO = modelMapper.map(key, ItemOrderDTO.class);

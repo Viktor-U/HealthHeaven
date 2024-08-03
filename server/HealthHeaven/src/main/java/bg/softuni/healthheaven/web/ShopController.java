@@ -6,14 +6,14 @@ import bg.softuni.healthheaven.model.dtos.IdRequestDTO;
 import bg.softuni.healthheaven.model.dtos.shop.ItemDTO;
 import bg.softuni.healthheaven.model.dtos.shop.ItemOrderDTO;
 import bg.softuni.healthheaven.model.dtos.shop.OrderDTO;
+import bg.softuni.healthheaven.model.entities.BaseEntity;
 import bg.softuni.healthheaven.services.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @RequiredArgsConstructor
 @RestController
@@ -39,10 +39,10 @@ public class ShopController {
 
     @PostMapping("/shop/cart")
     @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
-    public ResponseEntity<Set<ItemOrderDTO>> getAllItemsByUser(@RequestBody IdRequestDTO id) {
+    public ResponseEntity<List<ItemOrderDTO>> getAllItemsByUser(@RequestBody IdRequestDTO id) {
 
-        Set<ItemOrderDTO> items = itemService.getAllItemsOnUser(id.getId());
-
+        List<ItemOrderDTO> items = itemService.getAllItemsOnUser(id.getId());
+        items.sort(Comparator.comparingLong(ItemOrderDTO::getId));
         return ResponseEntity.ok(items);
     }
     @PostMapping("/shop/cart/add")
@@ -55,7 +55,7 @@ public class ShopController {
     }
 
     @DeleteMapping("/shop/cart/del")
-//    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
     public ResponseEntity<OrderDTO> removeItemFromCart(@RequestBody OrderDTO orderDTO) {
 
         itemService.removeItemFromCart(orderDTO);

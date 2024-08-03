@@ -8,10 +8,11 @@ export default function Home() {
 
     useEffect(() => {
         (async () => {
-            //TODO: modify to fetch latest doctors 
             const result = await shopAPI.getAll();
 
-            setBestItems(result.reverse().slice(0, 2));
+            const filteredItems = result.filter(item => item.rating === 5);
+            const bestItems = filteredItems.reverse().slice(0, 3);       
+            setBestItems(bestItems);
         })();
     }, [])
 

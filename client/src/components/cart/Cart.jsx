@@ -2,17 +2,15 @@ import React, { useEffect, useState } from 'react';
 import './cart.css';
 import useGetAllItemsInCart, { useDelItemInCart } from '../../hooks/useOrders';
 import { useAuthContext } from '../../contexts/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const initialValues = {
     userId: '',
     itemId: '',
-    quantity: 1,
 };
 
 function Cart() {
     const {userId} = useAuthContext();
-
     const [items, setItems] = useGetAllItemsInCart(userId);
     const [totalPrice, setTotalPrice] = useState(0);
     const delInCart = useDelItemInCart();
@@ -24,19 +22,25 @@ function Cart() {
         alert('All items have been ordered!');
     };
     useEffect(() => {
-        // Calculate the total price whenever items change
         const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
         setTotalPrice(total);
     }, [items]);
 
     const handleRemoveClick = async (id) => {
         initialValues.itemId = id;
-        if (items.quantity === 0) {
-            
-            setItems(items.filter(item => item.id !== id));
-        }
+        setItems(prevItems => {
+            return prevItems.map(item => {
+                if (item.id === id) {
+                    const updatedQuantity = item.quantity - 1;
+                    if (updatedQuantity <= 0) {
+                        return null;
+                    }
+                    return { ...item, quantity: updatedQuantity };
+                }
+                return item;
+            }).filter(item => item !== null);
+        });
         await delInCart(initialValues);
-        navigate("/cart");
     };
 
     return (
@@ -48,7 +52,7 @@ function Cart() {
                 <div className="cart-items">
                     {items.map(item => (
                         <div key={item.id} className="cart-item">
-                            <img src={item.imageURL} alt={item.name} />
+                            <Link to={`/items/${item.id}/details`}><img src={item.imageURL} alt={item.name} /></Link>
                             <div className="item-details">
                                 <div>
                                     <h3>{item.name}</h3>

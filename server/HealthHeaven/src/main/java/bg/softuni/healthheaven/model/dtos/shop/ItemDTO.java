@@ -20,5 +20,7 @@ public class ItemDTO {
 
     private Double price;
 
+    private Integer rating;
+
     private String description;
 }

@@ -1,11 +1,13 @@
 package bg.softuni.healthheaven.model.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "items")
@@ -25,4 +27,7 @@ public class Item extends BaseEntity{
 
     @Column(nullable = false, columnDefinition =  "text")
     private String description;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    private List<Rating> ratings = new ArrayList<>();
 }

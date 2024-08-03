@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './item-details.css'; // Assuming you have the CSS in a separate file
 import { useGetOneItem } from '../../hooks/useItems';
 import { usePutItemInCart } from '../../hooks/useOrders';
@@ -12,7 +12,7 @@ const initialValues = {
 };
 const ItemDetails = () => {
     const [quantity, setQuantity] = useState(1);
-    const [rating, setRating] = useState(0);
+    const [rating, setRating] = useState(5);
     const {itemId} = useParams();
     const {userId} = useAuthContext();
     const [isBought, setIsBought] = useState(false);
@@ -23,6 +23,15 @@ const ItemDetails = () => {
     initialValues.userId = userId;
 
     const putInCart = usePutItemInCart();
+
+    useEffect(() => {
+      if (quantity > 10) {
+        setQuantity(10);
+      }
+      if (quantity < 1) {
+        setQuantity(1);
+      }
+    },[quantity]);
     
   
     const handleQuantityChange = (e) => {
@@ -50,6 +59,7 @@ const ItemDetails = () => {
           <div className="item-image">
             <img src={item.imageURL} alt="Item" />
             <div className="rating">
+            <button className="rate-button"  >Rate</button>
               {[5, 4, 3, 2, 1].map((star) => (
                 <button
                   key={star}
@@ -59,10 +69,16 @@ const ItemDetails = () => {
                   ★
                 </button>
               ))}
+              <small className='raiting-small'>{rating}</small>              
+              
             </div>
           </div>
           <div className="item-info">
-            <h1 className="item-title">{item.name}</h1>
+            <div className='header-div'>
+            <h1 className="item-title">{item.name} </h1>
+            <h1 className='item-rate'>{item.rating} ★</h1>
+            </div>
+            
             <p className="item-description">
               {item.description}
             </p>
@@ -74,6 +90,7 @@ const ItemDetails = () => {
                   id="quantity" 
                   name="quantity" 
                   min="1" 
+                  max='10'
                   value={quantity} 
                   onChange={handleQuantityChange} 
                 />
