@@ -39,3 +39,15 @@
 .comments{
   width: 100%;
 }
+.delete-button-div{
+  position: absolute;
+  display: flex;
+  flex-direction: row-reverse;
+  transform: translateY(-30px);
+  left: 770px;
+}
+
+
+.delete-button-div>button:hover{
+  background-color: red;
+}

@@ -18,17 +18,26 @@ export default function DoctorDetails(){
     
     const commentSubmitHandler = async (e) => {
         e.preventDefault();
+        
+        const newComment =  await commentsApi.create(doctorId, email, comment);
+        
+        setDoctor(prevState => ({
+            ...prevState,
+            comments: [...prevState.comments, newComment]
+        }));
 
-       const newComment =  await commentsApi.create(doctorId, email, comment);
-       
-       setDoctor(prevState => ({
-        ...prevState,
-        comments: [...prevState.comments, newComment]
-    }));
-
+        console.log(newComment);
+        
         setComment("");
     }
+    const commentDeleteHandler = async (commentId) => {
+        await commentsApi.del(doctorId, commentId);
 
+        setDoctor(prevState => ({
+            ...prevState,
+            comments: prevState.comments.filter(comment => comment.id !== commentId)
+        }));
+    }
 
     return(
        
@@ -56,7 +65,7 @@ export default function DoctorDetails(){
                 </div>
                 )}
 
-                {/* <!-- Bonus ( for Guests and Users ) --> */}
+                {/* <!-- Bonus ( for Guests and Users ) --> */}                
                 <div className="details-comments">
                     <h2>Comments:</h2> 
                     <button className="styled-button" onClick={() => toggleShow(!show)}>
@@ -66,12 +75,18 @@ export default function DoctorDetails(){
                         <ul className="comments">
                             {Object.keys(doctor.comments || {}).length > 0
                                 ? Object.values(doctor.comments).map(comment => (
-                                    <li key={comment.id} className="comment">
-                                        <p>{comment.author}: {comment.content}</p>
-                                        <div>
-                                            <span className="data"> {format(comment.timeOnPost, "yyyy MMMM d,  H:MM")}</span>
-                                        </div>
-                                    </li>
+                                        <li key={comment.id} className="comment">
+                                            <p>{comment.author}: {comment.content}</p>
+                                            <div >
+                                                <span className="data"> {format(comment.timeOnPost, "yyyy MMMM d,  H:MM")}</span>
+                                            </div>
+                                            <div className="delete-button-div">
+                                            {comment.authorEmail === email || role === "ADMIN"
+                                                ?<button onClick={() => commentDeleteHandler(comment.id)}>Delete</button>
+                                                :<></>
+                                            }
+                                            </div>
+                                        </li>
                                 ))
                                 : <p className="no-comment">No comments yet.</p>                    
                             }

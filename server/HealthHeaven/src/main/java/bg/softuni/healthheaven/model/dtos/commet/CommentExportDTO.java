@@ -15,4 +15,5 @@ public class CommentExportDTO {
     private String content;
     private String timeOnPost;
     private String author;
+    private String authorEmail;
 }

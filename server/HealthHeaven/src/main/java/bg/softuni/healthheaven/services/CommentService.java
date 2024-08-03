@@ -3,6 +3,7 @@ package bg.softuni.healthheaven.services;
 import bg.softuni.healthheaven.model.dtos.commet.CommentDTO;
 import bg.softuni.healthheaven.model.dtos.commet.CommentExportDTO;
 import bg.softuni.healthheaven.model.entities.Comment;
+import bg.softuni.healthheaven.model.entities.Doctor;
 import bg.softuni.healthheaven.model.entities.User;
 import bg.softuni.healthheaven.repositories.CommentRepository;
 import bg.softuni.healthheaven.repositories.DoctorRepository;
@@ -12,6 +13,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -23,20 +26,37 @@ public class CommentService {
     private final ModelMapper modelMapper;
 
 
-    public CommentDTO addComment(CommentDTO commentDTO, Long id) {
+    public CommentExportDTO addComment(CommentDTO commentDTO, Long id) {
 
         Comment comment = modelMapper.map(commentDTO, Comment.class);
         comment.setAuthor(userRepository.findByEmail(commentDTO.getAuthor()).get());
         comment.setDoctor(doctorRepository.findById(id).get());
         comment.setTimeOnPost(Instant.now());
 
-        commentRepository.save(comment);
+        Comment save = commentRepository.save(comment);
 
+        CommentExportDTO result = modelMapper.map(save, CommentExportDTO.class);
         User user = userRepository.findByEmail(commentDTO.getAuthor()).get();
-        commentDTO.setTimeOnPost(Instant.now().toString());
-        commentDTO.setAuthor(user.getFirstName()+ " " + user.getLastName());
+        result.setTimeOnPost(Instant.now().toString());
+        result.setAuthor(user.getFirstName()+ " " + user.getLastName());
 
-        return commentDTO;
+
+        return result;
+
+    }
+
+    public List<CommentExportDTO> deleteComment(Long commentId, Long doctorId) {
+
+        commentRepository.deleteById(commentId);
+
+        Doctor doctor = doctorRepository.findById(doctorId).get();
+        List<CommentExportDTO> result = new ArrayList<>();
+
+        for (Comment comment : doctor.getComments()) {
+            CommentExportDTO map = modelMapper.map(comment, CommentExportDTO.class);
+            result.add(map);
+        }
+        return result;
 
     }
 }
