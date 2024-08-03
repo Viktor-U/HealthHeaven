@@ -2,6 +2,7 @@ package bg.softuni.healthheaven.web;
 
 import bg.softuni.healthheaven.model.dtos.commet.CommentDTO;
 import bg.softuni.healthheaven.model.dtos.rating.RatingDTO;
+import bg.softuni.healthheaven.model.dtos.shop.ItemDTO;
 import bg.softuni.healthheaven.services.RatingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -16,10 +17,10 @@ public class RatingController {
     private final RatingService ratingService;
 
     @PostMapping("/rate/{id}")
-    public ResponseEntity<RatingDTO> postRate(@RequestBody RatingDTO ratingDTO,
-                                                  @PathVariable Long id) {
-        ratingService.rateItem(ratingDTO, id);
+    public ResponseEntity<ItemDTO> postRate(@RequestBody RatingDTO ratingDTO,
+                                            @PathVariable Long id) {
+        ItemDTO result = ratingService.rateItem(ratingDTO, id);
 
-        return ResponseEntity.ok(ratingDTO);
+        return ResponseEntity.ok(result);
     }
 }

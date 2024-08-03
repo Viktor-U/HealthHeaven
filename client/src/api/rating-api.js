@@ -1,11 +1,14 @@
 import requester from "./requester"
 
-const BASE_URL = 'http://localhost:8080/doctors';
+const BASE_URL = 'http://localhost:8080/rate';
 
-const buildUrl = (doctorId) => `${BASE_URL}/${doctorId}/comments`;
+const buildUrl = (itemId) => `${BASE_URL}/${itemId}`;
 
-const create = async (doctorId, author, content) => requester.post(buildUrl(doctorId), { author, content });
+const rate = async (itemId, rating ,raterId) => requester.post(buildUrl(itemId), {rating, raterId});
 
-export default {
-    create,
-}
+const ratingsAPI = {
+    rate,
+  
+};
+
+export default ratingsAPI;

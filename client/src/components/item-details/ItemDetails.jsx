@@ -2,27 +2,40 @@ import React, { useEffect, useState } from 'react';
 import './item-details.css'; // Assuming you have the CSS in a separate file
 import { useGetOneItem } from '../../hooks/useItems';
 import { usePutItemInCart } from '../../hooks/useOrders';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useAuthContext } from '../../contexts/AuthContext';
+import ratingsAPI from '../../api/rating-api';
 
 const initialValues = {
     userId: '',
     itemId: '',
     quantity: ''
 };
+
 const ItemDetails = () => {
     const [quantity, setQuantity] = useState(1);
     const [rating, setRating] = useState(5);
     const {itemId} = useParams();
     const {userId} = useAuthContext();
     const [isBought, setIsBought] = useState(false);
+    const [item, setItem] = useGetOneItem(itemId);
 
     
  
     initialValues.itemId = itemId;
     initialValues.userId = userId;
 
+
+
     const putInCart = usePutItemInCart();
+
+    const ratingSubmitHandler = async (e) => {
+      e.preventDefault();
+
+     const ratetItem = await ratingsAPI.rate(itemId, rating, userId);
+      
+     setItem(ratetItem);
+    }
 
     useEffect(() => {
       if (quantity > 10) {
@@ -32,6 +45,8 @@ const ItemDetails = () => {
         setQuantity(1);
       }
     },[quantity]);
+
+
     
   
     const handleQuantityChange = (e) => {
@@ -51,7 +66,6 @@ const ItemDetails = () => {
       setRating(newRating);
     };
 
-    const [item] = useGetOneItem(itemId);
   
     return (
       <div className="container">
@@ -59,7 +73,7 @@ const ItemDetails = () => {
           <div className="item-image">
             <img src={item.imageURL} alt="Item" />
             <div className="rating">
-            <button className="rate-button"  >Rate</button>
+            <button className="rate-button" onClick={ratingSubmitHandler}  >Rate</button>
               {[5, 4, 3, 2, 1].map((star) => (
                 <button
                   key={star}

@@ -29,5 +29,6 @@ public class Item extends BaseEntity{
     private String description;
 
     @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "item_id")
     private List<Rating> ratings = new ArrayList<>();
 }

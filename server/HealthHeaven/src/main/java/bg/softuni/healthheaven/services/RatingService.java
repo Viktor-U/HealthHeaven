@@ -1,6 +1,7 @@
 package bg.softuni.healthheaven.services;
 
 import bg.softuni.healthheaven.model.dtos.rating.RatingDTO;
+import bg.softuni.healthheaven.model.dtos.shop.ItemDTO;
 import bg.softuni.healthheaven.model.entities.Item;
 import bg.softuni.healthheaven.model.entities.Rating;
 import bg.softuni.healthheaven.repositories.ItemRepository;
@@ -24,7 +25,10 @@ public class RatingService {
 
     private final ModelMapper modelMapper;
 
-    public void rateItem(RatingDTO ratingDTO, Long itemId) {
+    private final ItemService itemService;
+
+
+    public ItemDTO rateItem(RatingDTO ratingDTO, Long itemId) {
 
         Item item = itemRepository.findById(itemId).get();
 
@@ -39,10 +43,12 @@ public class RatingService {
             rating.setRating(ratingDTO.getRating());
             rating.setItem(item);
             rating.setRater(userRepository.findById(ratingDTO.getRaterId()).get());
-            item.getRatings().add(rating);
+            ratingRepository.saveAndFlush(rating);
+
         }
 
         itemRepository.save(item);
 
+        return itemService.getOneItem(itemId);
     }
 }

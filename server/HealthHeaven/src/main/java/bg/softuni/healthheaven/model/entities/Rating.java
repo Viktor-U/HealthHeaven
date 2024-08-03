@@ -17,7 +17,6 @@ public class Rating extends BaseEntity{
 
 
     @Column(nullable = false)
-    @Size(min = 1, max =5)
     private Integer rating;
 
     @OneToOne(fetch = FetchType.EAGER)
