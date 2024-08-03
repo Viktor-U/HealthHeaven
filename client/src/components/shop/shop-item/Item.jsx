@@ -32,6 +32,7 @@ export default function Item({
         setTimeout(() => {
             setIsBought(false);
           }, 3000);
+        console.log(id);
     };
 
     const handleDetailsClick = (id) => {
