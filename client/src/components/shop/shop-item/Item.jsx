@@ -19,13 +19,14 @@ export default function Item({
     const [isBought, setIsBought] = useState(false);
     const {isAuthenticated, userId} = useAuthContext();
     
-    initialValues.itemId = id;
-    initialValues.userId = userId;
+    
 
     const navigate = useNavigate();
     const putInCart = usePutItemInCart();
 
     const addToCart = () => {
+        initialValues.itemId = id;
+        initialValues.userId = userId;
         initialValues.quantity = 1;
         putInCart(initialValues)
         setIsBought(true)
