@@ -1,15 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import './cart.css';
-import useGetAllItemsInCart from '../../hooks/useOrders';
+import useGetAllItemsInCart, { useDelItemInCart } from '../../hooks/useOrders';
 import { useAuthContext } from '../../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
+const initialValues = {
+    userId: '',
+    itemId: '',
+    quantity: 1,
+};
 
 function Cart() {
     const {userId} = useAuthContext();
 
     const [items, setItems] = useGetAllItemsInCart(userId);
     const [totalPrice, setTotalPrice] = useState(0);
+    const delInCart = useDelItemInCart();
+    const navigate = useNavigate();
 
+    initialValues.userId = userId;
 
     const handleBuyAllClick = () => {
         alert('All items have been ordered!');
@@ -20,9 +29,14 @@ function Cart() {
         setTotalPrice(total);
     }, [items]);
 
-    const handleRemoveClick = (id) => {
-        setItems(items.filter(item => item.id !== id));
-        
+    const handleRemoveClick = async (id) => {
+        initialValues.itemId = id;
+        if (items.quantity === 0) {
+            
+            setItems(items.filter(item => item.id !== id));
+        }
+        await delInCart(initialValues);
+        navigate("/cart");
     };
 
     return (

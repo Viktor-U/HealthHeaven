@@ -11,7 +11,7 @@ export const getAllInCart = (userId) => request.post(`${BASE_URL}/cart`, userId)
 
 export const putInCart = (order) => request.post(`${BASE_URL}/cart/add`, order);
 
-export const deleteProductFromCart = (productId) => request.del(`${BASE_URL}/cart/add`, productId);
+export const deleteProductFromCart = (order) => request.del(`${BASE_URL}/cart/del`, order);
 
 
 // export const create = (doctorData) => request.post(BASE_URL, doctorData);

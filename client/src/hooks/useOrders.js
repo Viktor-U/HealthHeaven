@@ -20,3 +20,11 @@ export function usePutItemInCart() {
     return itemPutInCartHandler;
 
 }
+
+
+export function useDelItemInCart() {
+    const itemDelInCartHandler = (order) => shopAPI.deleteProductFromCart(order);
+      
+    return itemDelInCartHandler;
+
+}

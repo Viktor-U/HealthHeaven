@@ -13,6 +13,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RequiredArgsConstructor
 @RestController
@@ -37,16 +38,27 @@ public class ShopController {
 
 
     @PostMapping("/shop/cart")
-    public ResponseEntity<List<ItemOrderDTO>> getAllItemsByUser(@RequestBody IdRequestDTO id) {
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
+    public ResponseEntity<Set<ItemOrderDTO>> getAllItemsByUser(@RequestBody IdRequestDTO id) {
 
-        List<ItemOrderDTO> items = itemService.getAllItemsOnUser(id.getId());
+        Set<ItemOrderDTO> items = itemService.getAllItemsOnUser(id.getId());
 
         return ResponseEntity.ok(items);
     }
     @PostMapping("/shop/cart/add")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
     public ResponseEntity<OrderDTO> addItemToCart(@RequestBody OrderDTO orderDTO) {
 
         itemService.addItemToCart(orderDTO);
+
+        return ResponseEntity.ok(orderDTO);
+    }
+
+    @DeleteMapping("/shop/cart/del")
+//    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
+    public ResponseEntity<OrderDTO> removeItemFromCart(@RequestBody OrderDTO orderDTO) {
+
+        itemService.removeItemFromCart(orderDTO);
 
         return ResponseEntity.ok(orderDTO);
     }

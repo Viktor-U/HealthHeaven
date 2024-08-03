@@ -1,6 +1,7 @@
 package bg.softuni.healthheaven.services;
 
 
+import bg.softuni.healthheaven.model.dtos.IdRequestDTO;
 import bg.softuni.healthheaven.model.dtos.shop.ItemDTO;
 import bg.softuni.healthheaven.model.dtos.shop.ItemOrderDTO;
 import bg.softuni.healthheaven.model.dtos.shop.OrderDTO;
@@ -44,7 +45,7 @@ public class ItemService {
         return modelMapper.map(item, ItemDTO.class);
     }
 
-    public List<ItemOrderDTO> getAllItemsOnUser(Long id) {
+    public Set<ItemOrderDTO> getAllItemsOnUser(Long id) {
 
         Optional<User> user = userRepository.findById(id);
         List<Item> items = user.get().getItems();
@@ -62,13 +63,14 @@ public class ItemService {
 
         }
 
-        List<ItemOrderDTO> result = new ArrayList<>();
+        Set<ItemOrderDTO> result = new LinkedHashSet<>();
 
         itemMap.forEach((key, value) -> {
             ItemOrderDTO itemOrderDTO = modelMapper.map(key, ItemOrderDTO.class);
             itemOrderDTO.setQuantity(value);
             result.add(itemOrderDTO);
         });
+
 
         return result;
 
@@ -84,5 +86,16 @@ public class ItemService {
         }
 
         userRepository.save(user);
+    }
+
+    public void removeItemFromCart(OrderDTO orderDTO) {
+
+        User user = userRepository.findById(orderDTO.getUserId()).get();
+        Item item = itemRepository.findById(orderDTO.getItemId()).get();
+
+        user.getItems().remove(item);
+
+        userRepository.save(user);
+
     }
 }
