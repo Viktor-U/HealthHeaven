@@ -12,13 +12,12 @@ const initialValues = {
 
 export default function Item({
     id,
-    itemName,
+    name,
     imageURL,
     price
 }) {
     const [isBought, setIsBought] = useState(false);
     const {isAuthenticated, userId} = useAuthContext();
-    
     
 
     const navigate = useNavigate();
@@ -33,7 +32,6 @@ export default function Item({
         setTimeout(() => {
             setIsBought(false);
           }, 3000);
-        console.log(id);
     };
 
     const handleDetailsClick = (id) => {
@@ -44,8 +42,8 @@ export default function Item({
     return(
         
             <div className="product">
-                <img src={imageURL} alt={itemName}/>
-                <h3>{itemName}</h3>
+                <img src={imageURL} alt={name}/>
+                <h3>{name}</h3>
                 {isBought ?<p className='succes-boutht one-item'>Successfully added!</p> :<></>}
                 <p>{price}€</p>
                 {isAuthenticated

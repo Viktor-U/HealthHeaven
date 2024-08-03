@@ -15,7 +15,6 @@ export default function DoctorDetails(){
     const [show, toggleShow] = useState(false);
 
 
-
     
     const commentSubmitHandler = async (e) => {
         e.preventDefault();
@@ -23,14 +22,11 @@ export default function DoctorDetails(){
        const newComment =  await commentsApi.create(doctorId, email, comment);
        
        setDoctor(prevState => ({
-            ...prevState,
-            comments: {
-                ...prevState.comments,
-                [newComment.id]: newComment,
-            }
-       }));
+        ...prevState,
+        comments: [...prevState.comments, newComment]
+    }));
 
-       setComment("");
+        setComment("");
     }
 
 
