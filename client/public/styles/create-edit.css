@@ -43,3 +43,7 @@ textarea {
     margin-top: 13px;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
+
+.title-creat-edit{
+    color: rgb(29, 25, 25) !important;
+}

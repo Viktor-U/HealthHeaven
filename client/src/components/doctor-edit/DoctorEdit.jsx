@@ -59,7 +59,7 @@ export default function DoctorEdit() {
             <form id="edit" onSubmit={submitHandler}>
                 <div className="container">
 
-                    <h1>Edit Doctor</h1>
+                    <h1 className="title-creat-edit">Edit Doctor</h1>
                     <label className="label-create-edit" htmlFor="doc-name">Doctor Name:</label>
                     <input 
                         type="text" 

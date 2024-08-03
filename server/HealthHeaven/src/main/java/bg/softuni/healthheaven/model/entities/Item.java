@@ -23,6 +23,6 @@ public class Item extends BaseEntity{
     @Column(name = "image-url", columnDefinition = "text")
     private String imageURL;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition =  "text")
     private String description;
 }

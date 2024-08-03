@@ -28,6 +28,7 @@ footer {
 header {
     position: relative;
     padding: 10px;
+
 }
 
 header h1 {
@@ -38,11 +39,11 @@ header h1 {
 }
 
 header nav {
-    font-size: auto;
+    font-size: 1.2em;
     font-family: Georgia, 'Times New Roman', Times, serif;
     position: absolute;
     right: 0;
-    bottom: 8px;
+    bottom: 20px;
 }
 
 header nav>* {

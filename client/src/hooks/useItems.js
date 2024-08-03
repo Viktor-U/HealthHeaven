@@ -13,3 +13,20 @@ export default function useGetAllItems() {
 
     return [items, setItems];
 }
+
+export function useGetOneItem(itemId) {
+    const [item, setItem] = useState({});
+    
+    useEffect(() => {
+        (async () => {
+            const result = await shopAPI.getOne(itemId);
+
+            setItem(result);
+        })();
+    }, [itemId]);
+    
+    return[
+        item,
+        setItem,
+    ];
+}

@@ -29,6 +29,7 @@ public class DoctorController {
     }
 
     @GetMapping("/doctors/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
     public ResponseEntity<DoctorExportDTO> getOneDoctor(@PathVariable Long id) throws Exception {
 
         return ResponseEntity.ok(doctorService.getOneDoctor(id));
@@ -42,6 +43,7 @@ public class DoctorController {
         return ResponseEntity.ok(result);
     }
     @PostMapping("/doctors/edit")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<DoctorExportDTO> editDoctor(@RequestBody @Valid DoctorDTO doctorDTO) {
         DoctorExportDTO result = doctorService.editDoctor(doctorDTO);
 

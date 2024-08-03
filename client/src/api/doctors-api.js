@@ -6,7 +6,6 @@ export const getAll = () => request.get(BASE_URL);
 
 export const getOne = (doctorId) => request.get(`${BASE_URL}/${doctorId}`);
 
-
 export const create = (doctorData) => request.post(BASE_URL, doctorData);
 
 export const deleteDoctor = (doctorId) => request.del(`${BASE_URL}/${doctorId}`)

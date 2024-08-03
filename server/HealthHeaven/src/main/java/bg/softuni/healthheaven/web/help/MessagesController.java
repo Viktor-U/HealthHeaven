@@ -1,4 +1,4 @@
-package bg.softuni.healthheaven.web;
+package bg.softuni.healthheaven.web.help;
 
 import bg.softuni.healthheaven.model.dtos.MessageDTO;
 import org.springframework.http.ResponseEntity;

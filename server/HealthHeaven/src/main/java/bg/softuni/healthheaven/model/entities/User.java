@@ -5,6 +5,9 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "users")
 @AllArgsConstructor
@@ -32,5 +35,10 @@ public class User extends BaseEntity{
     @Column(nullable = false)
     @Size(max = 100)
     private String password;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Item> items = new ArrayList<>();
+
+
 
 }

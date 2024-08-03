@@ -1,12 +1,12 @@
-import useGetAllItems from '../../hooks/useProduct';
-import Item from './shop-product/Item';
+import useGetAllItems from '../../hooks/useItems';
+import Item from './shop-item/Item';
 import './shop.css';
 
 export default function Shop() {
 
     const [items] = useGetAllItems();
 
-
+    
     return(
         <section id="shop-page">
             <h1>Shop</h1>

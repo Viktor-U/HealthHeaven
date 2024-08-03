@@ -33,7 +33,7 @@ export function useGetOneDoctor(doctorId) {
     ];
 }
 
-export function useCreateDoctor() {
+export function  useCreateDoctor() {
     const doctorCreateHandler = (doctorData) => doctorsAPI.create(doctorData);
       
     return doctorCreateHandler;

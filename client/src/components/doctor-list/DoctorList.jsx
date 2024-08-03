@@ -3,6 +3,7 @@ import useGetAllDoctors from '../../hooks/useDoctors';
 
 export default function DoctorList(){
 
+    
     const [doctors] = useGetAllDoctors();
 
 

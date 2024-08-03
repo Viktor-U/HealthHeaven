@@ -1,17 +1,17 @@
 import { useEffect, useState } from 'react';
 import './home.css';
-import doctorsAPI from '../../api/doctors-api';
-import BestDoctors from './best-doctors/BestDoctors';
+import BestDoctors from './best-doctors/BestItems';
+import shopAPI from '../../api/shop-api';
 
 export default function Home() {
-    const [bestDoctors, setBestDoctors] = useState([]);
+    const [bestItems, setBestItems] = useState([]);
 
     useEffect(() => {
         (async () => {
             //TODO: modify to fetch latest doctors 
-            const result = await doctorsAPI.getAll();
+            const result = await shopAPI.getAll();
 
-            setBestDoctors(result.reverse().slice(0, 3));
+            setBestItems(result.reverse().slice(0, 2));
         })();
     }, [])
 
@@ -32,12 +32,12 @@ export default function Home() {
 
             </div>
             <div id="home-page">
-                <h1>Best Doctors</h1>
+                <h1>Best Items</h1>
 
-                <div className='latest-doctors'>
-                    {bestDoctors.length > 0
-                        ? bestDoctors.map(doctor => <BestDoctors key={doctor.id} {...doctor}/>)
-                        : <p className="no-articles">No doctors yet</p>
+                <div className='best-items'>
+                    {bestItems.length > 0
+                        ? bestItems.map(item => <BestDoctors key={item.id} {...item}/>)
+                        : <p className="no-articles">No items yet</p>
                     }
                 </div>
             </div>

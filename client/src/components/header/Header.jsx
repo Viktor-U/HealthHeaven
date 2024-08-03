@@ -1,6 +1,5 @@
 import {Link} from "react-router-dom";
 import { useAuthContext } from "../../contexts/AuthContext";
-import { getAccessToken } from "../../utils/authUtils";
 
 export default function Header(){
     const {isAuthenticated, role} = useAuthContext();
@@ -21,6 +20,7 @@ export default function Header(){
                 {isAuthenticated
                     ?(
                         <div id="user">
+                            <Link to="/cart">My Cart</Link>
                             <Link to="/logout">Logout</Link>
                         </div>
                     )

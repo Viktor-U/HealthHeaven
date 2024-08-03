@@ -49,10 +49,16 @@
 .product button:hover {
     background-color: #218838;
 }
+
 footer {
     background-color: #333;
     color: #fff;
     text-align: center;
     padding: 20px 0;
     margin-top: 20px;
+}
+.one-item{
+    position: absolute;
+
+    transform: translateY(-140px);
 }
