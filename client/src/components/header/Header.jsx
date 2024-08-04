@@ -11,6 +11,7 @@ export default function Header(){
             <nav>
                 <Link to="/doctors">All Doctors</Link>
                 <Link to="/shop">Shop</Link>
+                <Link to="/articles">Articles</Link>
 
                 {role==="ADMIN"
                     ?(<Link to="/doctors/create">Create Doctor</Link>)

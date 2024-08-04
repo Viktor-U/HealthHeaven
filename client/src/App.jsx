@@ -14,6 +14,7 @@ import DeleteDoctor from './components/doctor-delete/DeleteDoctor';
 import Shop from './components/shop/Shop';
 import ItemDetails from './components/item-details/ItemDetails';
 import Cart from './components/cart/Cart';
+import Article from './components/articles/Articles';
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
                   <Route path='/' element={<Home/>}/>
                   <Route path='/login' element={<Login/>}/>
                   <Route path='/register' element={<Register/>}/>
+                  <Route path='/logout' element={<Logout/>}/>
                   <Route path='/doctors' element={<DoctorList/>}/>  
                   <Route path='/doctors/:doctorId/details' element={<DoctorDetails/>}/>
                   <Route path='/doctors/create' element={<DoctorCreate/>}/>
@@ -39,7 +41,7 @@ function App() {
                   <Route path='/shop' element={<Shop/>}/>
                   <Route path='/items/:itemId/details' element={<ItemDetails/>}/>
                   <Route path='/cart' element={<Cart/>}/>
-                  <Route path='/logout' element={<Logout/>}/>
+                  <Route path='/articles' element={<Article/>}/>
               </Routes>
           </main>
       </div>

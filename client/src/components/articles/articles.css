@@ -1,0 +1,86 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.article {
+    background: url("../images/background.jpg");
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 1s;
+    background-size: cover;
+    color: rgb(255, 255, 255); /* Text color white for better contrast */
+}
+
+.article:hover {
+    transform: scale(1.1);
+}
+.sort-button{
+    transform: translateX(260px);
+    margin: 20px;
+    background-color: #8b8383;
+    padding: 1em;
+    border-radius: 10px;
+}
+.sort-button:hover{
+    background-color: #2123b6;
+    padding: 1.2em;
+    cursor: pointer;
+}
+
+
+.article h2 {
+    margin-top: 0;
+}
+
+.article p {
+    margin: 10px 0;
+}
+
+.article a {
+    position: relative;
+    color: #333;
+    text-decoration: none;
+    background-color: #23c775;
+    padding: 1em;
+    border-radius: 15px;
+    left: 560px;
+    bottom:40px;
+}
+
+.article a:hover {
+    background-color: #198d53;
+}
+
+.article .date {
+    font-size: 0.8em;
+    color: #bbb;
+}
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination button {
+    background-color: #0066cc;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin: 0 5px;
+}
+
+.pagination button:hover {
+    background-color: #004999;
+}
+
+.pagination button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
