@@ -6,7 +6,6 @@ import bg.softuni.healthheaven.model.dtos.IdRequestDTO;
 import bg.softuni.healthheaven.model.dtos.shop.ItemDTO;
 import bg.softuni.healthheaven.model.dtos.shop.ItemOrderDTO;
 import bg.softuni.healthheaven.model.dtos.shop.OrderDTO;
-import bg.softuni.healthheaven.model.entities.BaseEntity;
 import bg.softuni.healthheaven.services.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

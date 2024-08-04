@@ -19,14 +19,14 @@
     transform: scale(1.1);
 }
 .sort-button{
-    transform: translateX(260px);
-    margin: 20px;
-    background-color: #8b8383;
+    margin: 20px auto;
+    display: flex;
+    background-color: #5f97e4;
     padding: 1em;
     border-radius: 10px;
 }
 .sort-button:hover{
-    background-color: #2123b6;
+    background-color: #2167b6;
     padding: 1.2em;
     cursor: pointer;
 }
@@ -38,6 +38,10 @@
 
 .article p {
     margin: 10px 0;
+}
+img{
+    width: 400px;
+    height: 200px;
 }
 
 .article a {
@@ -57,7 +61,7 @@
 
 .article .date {
     font-size: 0.8em;
-    color: #bbb;
+    color: #414141;
 }
 .pagination {
     display: flex;
