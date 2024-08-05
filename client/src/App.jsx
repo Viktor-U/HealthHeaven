@@ -11,11 +11,12 @@ import DoctorCreate from './components/doctor-create/DoctorCreate';
 import DoctorDetails from './components/doctor-details/DoctorDetails';
 import DoctorEdit from './components/doctor-edit/DoctorEdit';
 import DeleteDoctor from './components/doctor-delete/DeleteDoctor';
-import Shop from './components/shop/Shop';
 import ItemDetails from './components/item-details/ItemDetails';
-import Cart from './components/cart/Cart';
 import Article from './components/articles/Articles';
 import ArticleContent from './components/article-content/ArticleContent';
+import Cart from './components/item-cart/Cart';
+import Shop from './components/item-shop/Shop';
+import ArticleCreate from './components/article-create/ArticleCreate';
 
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
                   <Route path='/cart' element={<Cart/>}/>
                   <Route path='/articles' element={<Article/>}/>
                   <Route path='/articles/:articleId' element={<ArticleContent/>}/>
+                  <Route path='/articles/create' element={<ArticleCreate/>}/>
               </Routes>
           </main>
       </div>

@@ -1,6 +1,7 @@
 package bg.softuni.healthheaven.model.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,7 +15,8 @@ import java.time.Instant;
 @NoArgsConstructor
 public class Comment extends BaseEntity{
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "text")
+    @Size(min = 1, max =200)
     private String content;
 
     private Instant timeOnPost;

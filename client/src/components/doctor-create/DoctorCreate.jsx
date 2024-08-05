@@ -21,8 +21,7 @@ export default function DoctorCreate(){
             const {id: doctorId} = await createDoctor(values);
             navigate(`/doctors/${doctorId}/details`);
         }catch(err) {
-            // TODO: set error state and display error
-            console.log(err.message);
+            alert("You are not authorised to do this!");
         }
     };
 
@@ -44,6 +43,9 @@ export default function DoctorCreate(){
                         id="name" 
                         name="name" 
                         value={values.name}
+                        minLength="2"
+                        maxLength="20"
+                        required
                         onChange={changeHandler}
                         placeholder="Enter doctor name..."
                     />
@@ -53,6 +55,9 @@ export default function DoctorCreate(){
                         type="text" 
                         id="specialization" 
                         name="specialization" 
+                        minLength="2"
+                        maxLength="20"
+                        required
                         value={values.specialization}
                         onChange={changeHandler}
                         placeholder="Enter doctor specialization..."
@@ -60,9 +65,12 @@ export default function DoctorCreate(){
 
                     <label className="label-create-edit" htmlFor="phoneNumbers">Phone Number:</label>
                     <input 
-                        type="text" 
+                        type="tel" 
                         id="phoneNumber" 
-                        name="phoneNumber" 
+                        name="phoneNumber"
+                        minLength="10"
+                        maxLength="10"
+                        required 
                         value={values.phoneNumber}
                         onChange={changeHandler}
                         placeholder="0893664222"
@@ -73,6 +81,7 @@ export default function DoctorCreate(){
                         type="text" 
                         id="profilePictureURL" 
                         name="profilePictureURL"
+                        required 
                         value={values.profilePictureURL}
                         onChange={changeHandler}
                         placeholder="Upload a photo..."
@@ -83,6 +92,8 @@ export default function DoctorCreate(){
                     <textarea 
                         name="description" 
                         id="description"
+                        required 
+                        minLength="10"
                         value={values.description}
                         onChange={changeHandler}    
                     >

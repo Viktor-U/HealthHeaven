@@ -33,7 +33,7 @@ public class User extends BaseEntity{
     private String email;
 
     @Column(nullable = false)
-    @Size(max = 100)
+    @Size(min = 4, max = 100)
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)

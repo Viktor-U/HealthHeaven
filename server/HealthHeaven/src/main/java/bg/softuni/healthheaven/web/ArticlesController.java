@@ -1,13 +1,15 @@
 package bg.softuni.healthheaven.web;
 
+import bg.softuni.healthheaven.model.dtos.articles.ArticleDTO;
 import bg.softuni.healthheaven.model.dtos.articles.ArticleExportDTO;
 import bg.softuni.healthheaven.model.dtos.doctor.DoctorDTO;
+import bg.softuni.healthheaven.model.dtos.doctor.DoctorExportDTO;
 import bg.softuni.healthheaven.services.ArticleService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,9 +26,20 @@ public class ArticlesController {
     }
 
     @GetMapping("/articles/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
     public ResponseEntity<ArticleExportDTO> getOneArticle(@PathVariable Long id) {
 
         return ResponseEntity.ok(articleService.getOneArticle(id));
     }
+
+    @PostMapping("/articles")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
+    public ResponseEntity<ArticleExportDTO> createArticle(@RequestBody ArticleDTO articleDTO) {
+
+        ArticleExportDTO result = articleService.createArticle(articleDTO);
+
+        return ResponseEntity.ok(result);
+    }
+
 
 }

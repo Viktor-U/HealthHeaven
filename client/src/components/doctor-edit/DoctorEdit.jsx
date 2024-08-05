@@ -38,9 +38,7 @@ export default function DoctorEdit() {
             const {id: doctorId} = await editDoctor(values);
             navigate(`/doctors/${doctorId}/details`);
         }catch(err) {
-            // TODO: set error state and display error
-            console.log(err.message);
-            console.log(doctorId);
+            alert("You are not authorised to do this!");
         }
     };
 
@@ -54,7 +52,6 @@ export default function DoctorEdit() {
 
 
     return (
-        // <!-- Edit Page ( Only for the creator )-->
         <section id="edit-page" className="auth">
             <form id="edit" onSubmit={submitHandler}>
                 <div className="container">
@@ -65,6 +62,9 @@ export default function DoctorEdit() {
                         type="text" 
                         id="name" 
                         name="name" 
+                        minLength="2"
+                        maxLength="20"
+                        required
                         value={values.name}
                         onChange={changeHandler}
                         placeholder="Enter doctor name..."
@@ -75,6 +75,9 @@ export default function DoctorEdit() {
                         type="text" 
                         id="specialization" 
                         name="specialization" 
+                        minLength="2"
+                        maxLength="20"
+                        required
                         value={values.specialization}
                         onChange={changeHandler}
                         placeholder="Enter doctor specialization..."
@@ -85,6 +88,9 @@ export default function DoctorEdit() {
                         type="text" 
                         id="phoneNumber" 
                         name="phoneNumber" 
+                        minLength="10"
+                        maxLength="10"
+                        required 
                         value={values.phoneNumber}
                         onChange={changeHandler}
                         placeholder="0893664222"
@@ -95,6 +101,7 @@ export default function DoctorEdit() {
                         type="text" 
                         id="profilePictureURL" 
                         name="profilePictureURL"
+                        required 
                         value={values.profilePictureURL}
                         onChange={changeHandler}
                         placeholder="Upload a photo..."
@@ -105,6 +112,8 @@ export default function DoctorEdit() {
                     <textarea 
                         name="description" 
                         id="description"
+                        required 
+                        minLength="10"
                         value={values.description}
                         onChange={changeHandler}    
                     >

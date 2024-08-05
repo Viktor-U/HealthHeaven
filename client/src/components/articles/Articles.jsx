@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './articles.css';
 import Article from './article/Article';
 import useGetAllArticles from '../../hooks/useArticles';
+import { useAuthContext } from '../../contexts/AuthContext';
 
 
 
@@ -9,7 +10,10 @@ function Articles() {
     const [sortOrder, setSortOrder] = useState('asc');
     const [currentPage, setCurrentPage] = useState(1);
     const articlesPerPage = 5;
-    const[articles, setArticles] = useGetAllArticles();
+    const[articles] = useGetAllArticles();
+    const {isAuthenticated} = useAuthContext();
+
+
 
     const sortedArticles = [...articles].sort((a, b) => {
         if (sortOrder === 'asc') {
@@ -39,6 +43,7 @@ function Articles() {
                     date={article.timeOnPost} 
                     image={article.imageURL} 
                     author={article.author}
+                    isAuthenticated={isAuthenticated}
                 />
             ))}
             <div className="pagination">
