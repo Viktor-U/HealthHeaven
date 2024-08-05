@@ -78,7 +78,7 @@ export default function ArticleContent (){
               <li key={comment.id} className="comment-item">
                   <p>{comment.author}: {comment.content}</p>
                   <div >
-                      <span className="data data-article"> {format(comment.timeOnPost, "yyyy MMMM d,  H:MM")}</span>
+                      <span className="data data-article"> {format(comment.timeOnPost, "yyyy MMMM do, H:mma")}</span>
                   </div>
                   <div className="del-article-comment">
                   {comment.authorEmail === email || role === "ADMIN"

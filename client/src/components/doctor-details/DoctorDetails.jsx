@@ -75,7 +75,7 @@ export default function DoctorDetails(){
                                         <li key={comment.id} className="comment">
                                             <p>{comment.author}: {comment.content}</p>
                                             <div >
-                                                <span className="data"> {format(comment.timeOnPost, "yyyy MMMM d,  H:MM")}</span>
+                                                <span className="data"> {format(comment.timeOnPost, "yyyy MMMM do, H:mma")}</span>
                                             </div>
                                             <div className="delete-button-div">
                                             {comment.authorEmail === email || role === "ADMIN"
