@@ -1,1 +1,0 @@
-INSERT INTO `health`.`users` (`id`, `first_name`, `last_name`, `login`, `role`) VALUES ('1', 'Viktor', 'Uzunov', 'VIKI', 'ADMIN');

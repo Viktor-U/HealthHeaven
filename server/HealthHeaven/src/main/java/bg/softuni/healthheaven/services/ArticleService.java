@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -64,6 +65,10 @@ public class ArticleService {
         result.setAuthor(userRepository.findByEmail(articleDTO.getAuthor()).get().getEmail());
         return result;
 
+    }
+
+    public void deleteArticle(Long id) {
+        articleRepository.deleteById(id);
     }
 }
 

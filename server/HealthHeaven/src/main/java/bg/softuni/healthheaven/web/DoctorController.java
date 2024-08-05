@@ -54,7 +54,6 @@ public class DoctorController {
     @PreAuthorize("hasAuthority('ADMIN')")
     public void deleteDoctor(@PathVariable Long id) {
         doctorService.deleteDoctor(id);
-
     }
 
 

@@ -9,7 +9,7 @@ export const getOne = (articleId) => request.get(`${BASE_URL}/${articleId}`);
 
 export const create = (articleData) => request.post(BASE_URL, articleData);
 
-export const del = (articleId) => request.del(`${BASE_URL}/${doctorId}`)
+export const del = (articleId) => request.del(`${BASE_URL}/${articleId}`)
 
 
 const articlesAPI = {

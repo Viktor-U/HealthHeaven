@@ -39,3 +39,9 @@ export function  useCreateArticle() {
     return articleCreateHandler;
 
 }
+
+export function  useDeleteArticle (articleId) {
+    
+    articlesAPI.del(articleId);
+    
+}

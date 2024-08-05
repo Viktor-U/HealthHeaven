@@ -88,3 +88,18 @@
     display: flex;
     justify-content: end;
   }
+
+  .article-delete-button{
+    position: absolute;
+    transform: translateX(680px);
+    top: 550px;
+    background-color: red;
+    border: solid black;
+    border-radius:10px;
+    padding: 1em;
+  }
+  .article-delete-button:hover{
+    cursor: pointer;
+    background-color: rgb(117, 4, 4);
+
+  }
