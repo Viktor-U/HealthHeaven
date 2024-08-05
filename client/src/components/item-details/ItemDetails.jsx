@@ -18,6 +18,7 @@ const ItemDetails = () => {
     const {itemId} = useParams();
     const {userId} = useAuthContext();
     const [isBought, setIsBought] = useState(false);
+    const [isRate, setIsRate] = useState(false);
     const [item, setItem] = useGetOneItem(itemId);
 
     
@@ -33,6 +34,10 @@ const ItemDetails = () => {
       e.preventDefault();
 
      const ratetItem = await ratingsAPI.rate(itemId, rating, userId);
+     setIsRate(true)
+     setTimeout(() => {
+         setIsRate(false);
+       }, 3000);
       
      setItem(ratetItem);
     }
@@ -64,11 +69,12 @@ const ItemDetails = () => {
   
     const handleRatingClick = (newRating) => {
       setRating(newRating);
+     
     };
 
   
     return (
-      <div className="container">
+      <div className="item-container">
         <div className="item-details">
           <div className="item-image">
             <img src={item.imageURL} alt="Item" />
@@ -83,7 +89,8 @@ const ItemDetails = () => {
                   ★
                 </button>
               ))}
-              <small className='raiting-small'>{rating}</small>              
+              <small className='raiting-small'>{rating}</small>         
+              {isRate && <p className='is-rated'>!Thanks for the rating</p>}     
               
             </div>
           </div>
@@ -111,7 +118,7 @@ const ItemDetails = () => {
               </div>
               <button className="add-to-cart-button" onClick={addToCart}>Add to Cart</button>
             </div>
-            {isBought ?<p className='succes-boutht'>Product successfully added to cart!</p> :<></>}
+            {isBought ?<p className='succes-boutht'>You successfully added to cart {quantity} {item.name}!</p> :<></>}
           </div>
         </div>
       </div>

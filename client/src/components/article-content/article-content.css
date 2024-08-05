@@ -1,0 +1,90 @@
+.article-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 40px auto;
+    background-color: #ccc;
+    border-radius: 20px;
+  }
+  
+  .article-title {
+    font-size: 2em;
+    margin-bottom: 10px;
+  }
+  
+  .article-author {
+    color: #555;
+    margin-bottom: 20px;
+  }
+  
+  .article-image {
+    width: 100%;
+    height: 400px;
+    margin-bottom: 20px;
+  }
+  
+  .article-content {
+    font-size: 1.2em;
+    margin-bottom: 40px;
+  }
+  
+  .comments-section {
+    border-top: 1px solid #ccc;
+    padding-top: 20px;
+  }
+  
+  .comments-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+  }
+  
+  .comment-item {
+    margin: 20px 10px;
+    border: #555 solid;    
+    border-radius: 10px;
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+  }
+  
+  .comment-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .comment-textarea {
+    width: 100%;
+    padding: 10px;
+    font-family: Arial, sans-serif;
+    margin-bottom: 10px;
+  }
+  
+  .comment-button {
+    align-self: flex-end;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+  }
+  
+  .comment-button:hover {
+    background-color: #0056b3;
+  }
+
+
+  .del-button{
+    position: absolute;
+  }
+  .del-button:hover{
+    background-color: red;
+  }
+  .data-article{
+    transform: translateY(0.1px);
+
+  }
+  .del-article-comment{
+    display: flex;
+    justify-content: end;
+  }

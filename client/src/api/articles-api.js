@@ -5,7 +5,7 @@ const BASE_URL = 'http://localhost:8080/articles';
 
 export const getAll = () => request.get(BASE_URL);
 
-// export const getOne = (itemId) => request.get(`${BASE_URL}/items/${itemId}`);
+export const getOne = (articleId) => request.get(`${BASE_URL}/${articleId}`);
 
 // export const getAllInCart = (userId) => request.post(`${BASE_URL}/cart`, userId);
 
@@ -22,7 +22,7 @@ export const getAll = () => request.get(BASE_URL);
 
 const articlesAPI = {
     getAll,
-    // getOne,
+    getOne,
     // getAllInCart,
     // putInCart,
     // deleteProductFromCart,

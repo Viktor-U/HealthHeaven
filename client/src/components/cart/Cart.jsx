@@ -14,7 +14,6 @@ function Cart() {
     const [items, setItems] = useGetAllItemsInCart(userId);
     const [totalPrice, setTotalPrice] = useState(0);
     const delInCart = useDelItemInCart();
-    const navigate = useNavigate();
 
     initialValues.userId = userId;
 

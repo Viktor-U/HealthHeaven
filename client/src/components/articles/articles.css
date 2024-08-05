@@ -12,7 +12,7 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: transform 1s;
     background-size: cover;
-    color: rgb(255, 255, 255); /* Text color white for better contrast */
+    color: rgb(255, 255, 255);
 }
 
 .article:hover {
@@ -39,7 +39,7 @@
 .article p {
     margin: 10px 0;
 }
-img{
+.articles-iamge{
     width: 400px;
     height: 200px;
 }

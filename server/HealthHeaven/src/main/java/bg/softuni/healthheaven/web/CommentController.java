@@ -21,17 +21,29 @@ public class CommentController {
 
     @PostMapping("/doctors/{id}/comments")
     @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
-    public ResponseEntity<CommentExportDTO> postComment(@RequestBody @Valid CommentDTO commentDTO,
+    public ResponseEntity<CommentExportDTO> postCommentDoctor(@RequestBody @Valid CommentDTO commentDTO,
                                                         @PathVariable Long id) {
-        CommentExportDTO result = commentService.addComment(commentDTO, id);
+        CommentExportDTO result = commentService.addCommentDoctor(commentDTO, id);
+        return ResponseEntity.ok(result);
+    }
+    @PostMapping("/articles/{id}/comments")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
+    public ResponseEntity<CommentExportDTO> postCommentArticle(@RequestBody @Valid CommentDTO commentDTO,
+                                                        @PathVariable Long id) {
+        CommentExportDTO result = commentService.addCommentArticle(commentDTO, id);
         return ResponseEntity.ok(result);
     }
 
     @DeleteMapping("/doctors/{id}/comments")
     @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
-    public List<CommentExportDTO> deleteComment(@RequestParam Long commentId,
+    public List<CommentExportDTO> deleteCommentDoctor(@RequestParam Long commentId,
                                           @PathVariable Long id) {
-        List<CommentExportDTO> commentExportDTO = commentService.deleteComment(commentId, id);
-        return commentExportDTO;
+        return commentService.deleteCommentDoctor(commentId, id);
+    }
+    @DeleteMapping("/articles/{id}/comments")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
+    public List<CommentExportDTO> deleteCommentArticle(@RequestParam Long commentId,
+                                                      @PathVariable Long id) {
+        return commentService.deleteCommentArticle(commentId, id);
     }
 }

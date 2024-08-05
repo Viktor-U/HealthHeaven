@@ -16,3 +16,19 @@ export default function useGetAllArticles() {
 
     return [articles, setArticles];
 }
+
+export function useGetOneArticle(articleId) {
+    const [article, setArticle] = useState({});
+    
+    useEffect(() => {
+        (async () => {
+            const result = await articlesAPI.getOne(articleId);
+
+            setArticle(result);
+        })();
+    }, [articleId]);
+    return[
+        article,
+        setArticle,
+    ];
+}

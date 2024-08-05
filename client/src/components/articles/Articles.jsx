@@ -3,11 +3,8 @@ import './articles.css';
 import Article from './article/Article';
 import useGetAllArticles from '../../hooks/useArticles';
 
-// Define the articles array
 
 
-
-// Define the Articles component
 function Articles() {
     const [sortOrder, setSortOrder] = useState('asc');
     const [currentPage, setCurrentPage] = useState(1);
@@ -16,19 +13,17 @@ function Articles() {
 
     const sortedArticles = [...articles].sort((a, b) => {
         if (sortOrder === 'asc') {
-            return new Date(a.date) - new Date(b.date);
+            return new Date(a.timeOnPost) - new Date(b.timeOnPost);
         } else {
-            return new Date(b.date) - new Date(a.date);
+            return new Date(b.timeOnPost) - new Date(a.timeOnPost);
         }
     });
 
 
-    // Logic for displaying current articles
     const indexOfLastArticle = currentPage * articlesPerPage;
     const indexOfFirstArticle = indexOfLastArticle - articlesPerPage;
     const currentArticles = sortedArticles.slice(indexOfFirstArticle, indexOfLastArticle);
 
-    // Logic for page numbers
     const totalPages = Math.ceil(sortedArticles.length / articlesPerPage);
 
     return (
@@ -39,10 +34,11 @@ function Articles() {
             {currentArticles.map(article => (
                 <Article 
                     key={article.id} 
+                    id={article.id}
                     title={article.title} 
-                    content={article.content} 
-                    date={article.createdDate} 
+                    date={article.timeOnPost} 
                     image={article.imageURL} 
+                    author={article.author}
                 />
             ))}
             <div className="pagination">
@@ -53,5 +49,4 @@ function Articles() {
     );
 }
 
-// Export the Articles component
 export default Articles;

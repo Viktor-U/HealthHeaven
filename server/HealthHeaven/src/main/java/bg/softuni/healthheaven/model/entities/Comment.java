@@ -27,5 +27,9 @@ public class Comment extends BaseEntity{
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Article article;
+
+
 
 }

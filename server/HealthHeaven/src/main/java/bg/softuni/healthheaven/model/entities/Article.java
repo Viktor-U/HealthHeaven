@@ -25,9 +25,10 @@ public class Article extends BaseEntity{
     @Column(nullable = false)
     private String content;
 
-    private Instant createdDate;
+    private Instant timeOnPost;
 
     @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "article_id")
     private List<Comment> comments;
 
     @ManyToOne(fetch = FetchType.EAGER)

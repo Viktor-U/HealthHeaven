@@ -19,19 +19,18 @@ export default function DoctorDetails(){
     const commentSubmitHandler = async (e) => {
         e.preventDefault();
         
-        const newComment =  await commentsApi.create(doctorId, email, comment);
+        const newComment =  await commentsApi.createDctorComment(doctorId, email, comment);
         
         setDoctor(prevState => ({
             ...prevState,
             comments: [...prevState.comments, newComment]
         }));
 
-        console.log(newComment);
         
         setComment("");
     }
     const commentDeleteHandler = async (commentId) => {
-        await commentsApi.del(doctorId, commentId);
+        await commentsApi.deleteDoctorComment(doctorId, commentId);
 
         setDoctor(prevState => ({
             ...prevState,
@@ -41,7 +40,6 @@ export default function DoctorDetails(){
 
     return(
        
-        // <!--Details Page-->
         <section id="doctor-details">
             <h1>Doctor Details</h1>
             <div className="info-section">
@@ -65,7 +63,6 @@ export default function DoctorDetails(){
                 </div>
                 )}
 
-                {/* <!-- Bonus ( for Guests and Users ) --> */}                
                 <div className="details-comments">
                     <h2>Comments:</h2> 
                     <button className="styled-button" onClick={() => toggleShow(!show)}>

@@ -33,7 +33,6 @@ export default function DoctorCreate(){
     } = useForm(initialValues, createHandler);
 
     return(
-        // <!-- Create Page ( Only for logged-in users ) -->
         <section id="create-page" className="auth">
             <form id="create" onSubmit={submitHandler} >
                 <div className="container">

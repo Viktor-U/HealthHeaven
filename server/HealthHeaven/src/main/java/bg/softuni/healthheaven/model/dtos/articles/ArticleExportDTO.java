@@ -21,7 +21,7 @@ public class ArticleExportDTO {
     private Long id;
     private String title;
     private String content;
-    private String createdDate;
+    private String timeOnPost;
     private String imageURL;
     private String author;
     private List<CommentExportDTO> comments;
