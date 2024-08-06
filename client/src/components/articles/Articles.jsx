@@ -3,6 +3,7 @@ import './articles.css';
 import Article from './article/Article';
 import useGetAllArticles from '../../hooks/useArticles';
 import { useAuthContext } from '../../contexts/AuthContext';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 
@@ -12,6 +13,7 @@ function Articles() {
     const articlesPerPage = 5;
     const[articles] = useGetAllArticles();
     const {isAuthenticated} = useAuthContext();
+    const navigate = useNavigate();
 
 
 
@@ -32,9 +34,16 @@ function Articles() {
 
     return (
         <div className="container">
-            <button className="sort-button" onClick={() => setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')}>
-                Sort by date ({sortOrder === 'asc' ? 'ascending' : 'descending'})
-            </button>
+            <div className='buttons-article'>
+                <button className="sort-button" onClick={() => setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')}>
+                    Sort by date ({sortOrder === 'asc' ? 'ascending' : 'descending'})
+                </button>
+                <button className="sort-button" onClick={() => navigate('/articles/create')} >
+                    Create Article
+                </button>
+                   
+               
+            </div>
             {currentArticles.map(article => (
                 <Article 
                     key={article.id} 

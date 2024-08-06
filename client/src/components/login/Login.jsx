@@ -2,19 +2,22 @@ import { Link, useNavigate} from "react-router-dom";
 
 import { useLogin } from "../../hooks/useAuth";
 import { useForm } from "../../hooks/useForm";
+import { useState } from "react";
 
 const initialValues = {email: '', password: ''};
 
 export default function Login(){
+    const [error, setError] = useState();
     const login = useLogin();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const loginHandler = async ({ email, password }) => {
+
         try {
             await login(email, password)
             navigate('/');
         } catch (err) {
-            console.error(err.message);
+            setError('Invalid email or password');
         }
     };
     const { 
@@ -26,13 +29,16 @@ export default function Login(){
 
 
     return(
-        // <!-- Login Page ( Only for Guest users ) -->
         <section id="login-page" className="auth">
             <form id="login" onSubmit={submitHandler}>
                 <div className="container">
                     <div className="brand-logo"></div>
                     <h1>Login</h1>
-
+                    {error && (
+                        <p>
+                            <span className="error-message ">{error}</span>
+                        </p>
+                    )}
                     <label htmlFor="email">Email:</label>
                     <input 
                         type="email" 

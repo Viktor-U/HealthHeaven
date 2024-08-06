@@ -13,15 +13,40 @@ export default function Register(){
     const navigate = useNavigate();
 
     const registerHandler = async (values) => {
-        if (values.password !== values['confirm-password']) {
-            return setError('Password missmatch!');
-        }
+    if (!values.firstName || values.firstName.trim().length < 2 || values.firstName.trim().length > 20) {
+        return setError('First name must be between 2 and 20 characters!');
+    }
+
+    if (!values.lastName || values.lastName.trim().length < 2 || values.lastName.trim().length > 20) {
+        return setError('Last name must be between 2 and 20 characters!');
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!values.email || !emailRegex.test(values.email)) {
+        return setError('A valid email is required!');
+    }
+
+    if (!values.password || values.password.length < 8) {
+        return setError('Password must be at least 8 characters long!');
+    }
+
+    const uppercaseRegex = /[A-Z]/;
+    if (!uppercaseRegex.test(values.password)) {
+        return setError('Password must contain at least one uppercase letter!');
+    }
+    const lowercaseRegex = /[a-z]/;
+    if (!lowercaseRegex.test(values.password)) {
+        return setError('Password must contain at least one lowercase letter!');
+    }
+
+    if (values.password !== values['confirm-password']) {
+        return setError('Passwords do not match!');
+    }
         try {
             await register(values.firstName, values.lastName, values.email, values.password)
             navigate('/');
         } catch (err) {
             setError(err.message);
-            console.error(err.message);
         }
     };
 
@@ -34,7 +59,6 @@ export default function Register(){
 
     return(
         
-        // <!-- Register Page ( Only for Guest users ) -->
         <section id="register-page" className="content auth">
             <form id="register" onSubmit={submitHandler}>
                 <div className="container">

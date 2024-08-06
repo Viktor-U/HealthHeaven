@@ -84,6 +84,10 @@
     background-color: #004999;
 }
 
+.buttons-article{
+    display: flex;
+    flex-direction: row-reverse;
+}
 .pagination button:disabled {
     background-color: #cccccc;
     cursor: not-allowed;
