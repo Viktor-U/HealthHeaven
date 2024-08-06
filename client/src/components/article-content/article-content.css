@@ -92,7 +92,7 @@
   .article-delete-button{
     position: absolute;
     transform: translateX(680px);
-    top: 550px;
+    top: 590px;
     background-color: red;
     border: solid black;
     border-radius:10px;

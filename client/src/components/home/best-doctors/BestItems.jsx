@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../../../contexts/AuthContext";
+import { useTranslation } from "react-i18next";
 
 export default function BestDoctors({
     id,
@@ -7,6 +8,7 @@ export default function BestDoctors({
     imageURL
 }) {
     const {isAuthenticated} = useAuthContext();
+    const { t } = useTranslation();
 
     return(
         
@@ -21,8 +23,8 @@ export default function BestDoctors({
             </div>
             <div className="data-buttons">
                 {isAuthenticated
-                    ? <Link to={`/items/${id}/details`} className="btn details-btn">Details</Link>
-                    : <Link to={`/login`} className="btn details-btn">Details</Link>
+                    ? <Link to={`/items/${id}/details`} className="btn details-btn">{t('details')}</Link>
+                    : <Link to={`/login`} className="btn details-btn">{t('details')}</Link>
                 }
                
             </div>

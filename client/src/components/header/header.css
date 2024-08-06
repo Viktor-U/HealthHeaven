@@ -1,0 +1,28 @@
+.language-switcher {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+  
+  .change-language {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: #333;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 0 10px;
+    padding: 10px 20px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .change-language:hover {
+    background-color: #ddd;
+  }
+  
+  .change-language.active {
+    background-color: #007bff;
+    border-color: #0056b3;
+    color: white;
+  }
+  

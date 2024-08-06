@@ -5,6 +5,7 @@ import { usePutItemInCart } from '../../hooks/useOrders';
 import { useParams } from 'react-router-dom';
 import { useAuthContext } from '../../contexts/AuthContext';
 import ratingsAPI from '../../api/rating-api';
+import { useTranslation } from 'react-i18next';
 
 const initialValues = {
     userId: '',
@@ -20,13 +21,12 @@ const ItemDetails = () => {
     const [isBought, setIsBought] = useState(false);
     const [isRate, setIsRate] = useState(false);
     const [item, setItem] = useGetOneItem(itemId);
-
-    
+    const { t, i18n } = useTranslation();
+    let price = 0;
+    price = price + item.price
  
     initialValues.itemId = itemId;
     initialValues.userId = userId;
-
-
 
     const putInCart = usePutItemInCart();
 
@@ -51,7 +51,6 @@ const ItemDetails = () => {
       }
     },[quantity]);
 
-
     
   
     const handleQuantityChange = (e) => {
@@ -72,6 +71,13 @@ const ItemDetails = () => {
      
     };
 
+    if(i18n.language === 'bg'){
+      price = (price*1.96).toFixed(2) ;
+    }else{
+      price = price.toFixed(2)
+    };
+
+
   
     return (
       <div className="item-container">
@@ -79,7 +85,7 @@ const ItemDetails = () => {
           <div className="item-image">
             <img src={item.imageURL} alt="Item" />
             <div className="rating">
-            <button className="rate-button" onClick={ratingSubmitHandler}  >Rate</button>
+            <button className="rate-button" onClick={ratingSubmitHandler} >{t('rate')}</button>
               {[5, 4, 3, 2, 1].map((star) => (
                 <button
                   key={star}
@@ -90,7 +96,7 @@ const ItemDetails = () => {
                 </button>
               ))}
               <small className='raiting-small'>{rating}</small>         
-              {isRate && <p className='is-rated'>!Thanks for the rating</p>}     
+              {isRate && <p className='is-rated'>{t('thanks_for_rating')}</p>}     
               
             </div>
           </div>
@@ -99,12 +105,11 @@ const ItemDetails = () => {
             <h1 className="item-title">{item.name} </h1>
             <h1 className='item-rate'>{item.rating} ★</h1>
             </div>
-            
             <p className="item-description">
               {item.description}
             </p>
             <div className="action-section">
-                <p className="item-price">{item.price}€</p>
+                <p className="item-price">{t('price_currency', { price })}</p>
                 <div className="quantity-selector">
                 <input 
                   type="number" 
@@ -116,9 +121,9 @@ const ItemDetails = () => {
                   onChange={handleQuantityChange} 
                 />
               </div>
-              <button className="add-to-cart-button" onClick={addToCart}>Add to Cart</button>
+              <button className="add-to-cart-button" onClick={addToCart}>{t('add_to_cart')}</button>
             </div>
-            {isBought ?<p className='succes-boutht'>You successfully added to cart {quantity} {item.name}!</p> :<></>}
+            {isBought ?<p className='succes-boutht'>{t('successfully_added', { quantity, name: item.name })}</p> :<></>}
           </div>
         </div>
       </div>

@@ -4,18 +4,16 @@ import Article from './article/Article';
 import useGetAllArticles from '../../hooks/useArticles';
 import { useAuthContext } from '../../contexts/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
-
-
+import { useTranslation } from 'react-i18next';
 
 function Articles() {
     const [sortOrder, setSortOrder] = useState('asc');
     const [currentPage, setCurrentPage] = useState(1);
     const articlesPerPage = 5;
-    const[articles] = useGetAllArticles();
-    const {isAuthenticated} = useAuthContext();
+    const [articles] = useGetAllArticles();
+    const { isAuthenticated } = useAuthContext();
     const navigate = useNavigate();
-
-
+    const { t } = useTranslation();
 
     const sortedArticles = [...articles].sort((a, b) => {
         if (sortOrder === 'asc') {
@@ -24,7 +22,6 @@ function Articles() {
             return new Date(b.timeOnPost) - new Date(a.timeOnPost);
         }
     });
-
 
     const indexOfLastArticle = currentPage * articlesPerPage;
     const indexOfFirstArticle = indexOfLastArticle - articlesPerPage;
@@ -36,13 +33,11 @@ function Articles() {
         <div className="container">
             <div className='buttons-article'>
                 <button className="sort-button" onClick={() => setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')}>
-                    Sort by date ({sortOrder === 'asc' ? 'ascending' : 'descending'})
+                    {t('sort_by_date')} ({sortOrder === 'asc' ? t('ascending') : t('descending')})
                 </button>
-                <button className="sort-button" onClick={() => navigate('/articles/create')} >
-                    Create Article
+                <button className="sort-button" onClick={() => navigate('/articles/create')}>
+                    {t('create_article')}
                 </button>
-                   
-               
             </div>
             {currentArticles.map(article => (
                 <Article 
@@ -56,8 +51,8 @@ function Articles() {
                 />
             ))}
             <div className="pagination">
-                <button onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 1}>Back</button>
-                <button onClick={() => setCurrentPage(currentPage + 1)} disabled={currentPage === totalPages}>Next</button>
+                <button onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 1}>{t('back')}</button>
+                <button onClick={() => setCurrentPage(currentPage + 1)} disabled={currentPage === totalPages}>{t('next')}</button>
             </div>
         </div>
     );

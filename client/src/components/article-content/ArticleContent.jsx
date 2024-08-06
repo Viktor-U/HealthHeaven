@@ -6,7 +6,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useAuthContext } from '../../contexts/AuthContext';
 import commentsApi from '../../api/comments-api';
 import { format } from 'date-fns';
-import articlesAPI from '../../api/articles-api';
+import { useTranslation } from 'react-i18next';
 
 
 
@@ -17,6 +17,7 @@ export default function ArticleContent (){
   const [article, setArticle] = useGetOneArticle(articleId);
   const {email, isAuthenticated, role} = useAuthContext();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
 
   
@@ -54,24 +55,24 @@ export default function ArticleContent (){
       <img src={article.imageURL} alt="Article" className="article-image" />
       <h1 className="article-title" title='submit'>{article.title}</h1>
       
-      {role==="ADMIN" && <button className="article-delete-button" onClick={deleteArticleHandler}>Delete</button>}
+      {role==="ADMIN" && <button className="article-delete-button" onClick={deleteArticleHandler}>{t('delete')}</button>}
 
-      <p className="article-author">By {article.author} on {new Date(article.timeOnPost).toLocaleDateString()}</p>
+      <p className="article-author">{t('by_author')} {article.author} {t('on_date')} {new Date(article.timeOnPost).toLocaleDateString()}</p>
       <p className="article-content">{article.content}</p>
       <div className="comment-form">
           <textarea
             value={comment}
             onChange={(e) => setComment(e.target.value)}
-            placeholder="Write your comment..."
+            placeholder={t('write_comment')}
             rows="4"
             className="comment-textarea"
           ></textarea>
           <button onClick={commentSubmitHandler} className="comment-button">
-            Post Comment
+            {t('post_comment')}
           </button>
         </div>
       <div className="comments-section">
-        <h2>Comments</h2>
+        <h2>{t('comments')}</h2>
         <ul className="comments-list">
           {Object.keys(article.comments || {}).length > 0
             ? Object.values(article.comments).map((comment) => (
@@ -82,13 +83,13 @@ export default function ArticleContent (){
                   </div>
                   <div className="del-article-comment">
                   {comment.authorEmail === email || role === "ADMIN"
-                      ?<button onClick={() => commentDeleteHandler(comment.id)} className='del-button'>Delete</button>
+                      ?<button onClick={() => commentDeleteHandler(comment.id)} className='del-button'>{t('delete')}</button>
                       :<></>
                   }
                   </div>
               </li>
           ))
-          :<p className="no-comment">No comments yet.</p>   
+          :<p className="no-comment">{t('no_comments')}</p>   
         }
 
         </ul>

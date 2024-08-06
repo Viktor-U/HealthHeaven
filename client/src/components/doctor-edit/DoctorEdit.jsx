@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "../../hooks/useForm";
 import { useEditDoctor, useGetOneDoctor } from "../../hooks/useDoctors";
+import { useTranslation } from "react-i18next";
 
 
 
@@ -18,6 +19,7 @@ const initialValues={
 export default function DoctorEdit() {
     const navigate = useNavigate();
     const { doctorId} = useParams();
+    const { t } = useTranslation();
 
     
     const editDoctor = useEditDoctor();
@@ -56,8 +58,8 @@ export default function DoctorEdit() {
             <form id="edit" onSubmit={submitHandler}>
                 <div className="container">
 
-                    <h1 className="title-creat-edit">Edit Doctor</h1>
-                    <label className="label-create-edit" htmlFor="doc-name">Doctor Name:</label>
+                    <h1 className="title-creat-edit">{t('edit_doctor')}</h1>
+                    <label className="label-create-edit" htmlFor="doc-name">{t('doctor_name')}:</label>
                     <input 
                         type="text" 
                         id="name" 
@@ -67,10 +69,10 @@ export default function DoctorEdit() {
                         required
                         value={values.name}
                         onChange={changeHandler}
-                        placeholder="Enter doctor name..."
+                        placeholder={t('enter_doctor_name')}
                     />
 
-                    <label className="label-create-edit" htmlFor="specialization">Specialization:</label>
+                    <label className="label-create-edit" htmlFor="specialization">{t('specialization')}:</label>
                     <input 
                         type="text" 
                         id="specialization" 
@@ -80,10 +82,10 @@ export default function DoctorEdit() {
                         required
                         value={values.specialization}
                         onChange={changeHandler}
-                        placeholder="Enter doctor specialization..."
+                        placeholder={t('enter_specialization')}
                     />
 
-                    <label className="label-create-edit" htmlFor="phoneNumbers">Phone Number:</label>
+                    <label className="label-create-edit" htmlFor="phoneNumbers">{t('phone_number')}:</label>
                     <input 
                         type="text" 
                         id="phoneNumber" 
@@ -93,10 +95,10 @@ export default function DoctorEdit() {
                         required 
                         value={values.phoneNumber}
                         onChange={changeHandler}
-                        placeholder="0893664222"
+                        placeholder={t('enter_phone_number')}
                     />
 
-                    <label className="label-create-edit" htmlFor="doctor-img">Profile PictureURL:</label>
+                    <label className="label-create-edit" htmlFor="doctor-img">{t('profile_picture_url')}:</label>
                     <input 
                         type="text" 
                         id="profilePictureURL" 
@@ -104,11 +106,11 @@ export default function DoctorEdit() {
                         required 
                         value={values.profilePictureURL}
                         onChange={changeHandler}
-                        placeholder="Upload a photo..."
+                        placeholder={t('upload_photo')}
 
                     />
 
-                    <label className="label-create-edit" htmlFor="description">Description:</label>
+                    <label className="label-create-edit" htmlFor="description">{t('description')}:</label>
                     <textarea 
                         name="description" 
                         id="description"
@@ -118,7 +120,7 @@ export default function DoctorEdit() {
                         onChange={changeHandler}    
                     >
                     </textarea>
-                    <input className="btn submit" type="submit" value="Edit Doctor"/>
+                    <input className="btn submit" type="submit" value={t('edit')}/>
 
                 </div>
             </form>
