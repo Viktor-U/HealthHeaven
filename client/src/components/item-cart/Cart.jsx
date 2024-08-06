@@ -24,13 +24,13 @@ function Cart() {
     };
 
     useEffect(() => {
+        let total = 0.00;
         if(i18n.language !== 'bg'){
-            const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
-            setTotalPrice(total);
+             total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
         }else{
-            const total = items.reduce((sum, item) => sum + (item.price * 1.96) * item.quantity, 0);
-            setTotalPrice(total);
-         };
+             total = items.reduce((sum, item) => sum + (item.price * 1.96) * item.quantity, 0);
+        };
+        setTotalPrice(total.toFixed(2));
     }, [items, i18n.language]);
 
 
