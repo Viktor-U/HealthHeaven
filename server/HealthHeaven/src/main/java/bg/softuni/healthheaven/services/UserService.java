@@ -41,7 +41,7 @@ public class UserService {
         Optional<User> optionalUser = userRepository.findByEmail(userRegisterDTO.getEmail());
 
         if (optionalUser.isPresent()) {
-            throw new AppException("Login already exists", HttpStatus.BAD_REQUEST);
+            throw new AppException("User with this email already exists", HttpStatus.BAD_REQUEST);
         }
 
         User user = modelMapper.map(userRegisterDTO, User.class);

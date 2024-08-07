@@ -2,10 +2,7 @@ package bg.softuni.healthheaven.web;
 
 import bg.softuni.healthheaven.model.dtos.articles.ArticleDTO;
 import bg.softuni.healthheaven.model.dtos.articles.ArticleExportDTO;
-import bg.softuni.healthheaven.model.dtos.doctor.DoctorDTO;
-import bg.softuni.healthheaven.model.dtos.doctor.DoctorExportDTO;
 import bg.softuni.healthheaven.services.ArticleService;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -42,7 +39,7 @@ public class ArticlesController {
     }
 
     @DeleteMapping("/articles/{id}")
-//    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void deleteArticle(@PathVariable Long id) {
         articleService.deleteArticle(id);
     }

@@ -23,8 +23,6 @@ public class RatingService {
 
     private final UserRepository userRepository;
 
-    private final ModelMapper modelMapper;
-
     private final ItemService itemService;
 
 

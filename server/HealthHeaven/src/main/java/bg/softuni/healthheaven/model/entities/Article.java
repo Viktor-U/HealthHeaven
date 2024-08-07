@@ -1,6 +1,7 @@
 package bg.softuni.healthheaven.model.entities;
 
 import jakarta.persistence.*;
+import jdk.jshell.Snippet;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -34,4 +35,6 @@ public class Article extends BaseEntity{
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User author;
+
+
 }

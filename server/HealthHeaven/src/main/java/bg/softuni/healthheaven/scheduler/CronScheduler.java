@@ -21,7 +21,7 @@ public class CronScheduler {
     private final ArticleRepository articleRepository;
 
 
-    @Scheduled(cron = "0 0 1 * *")
+    @Scheduled(cron = "0 0 1 * *")//1am
     public void deleteArticlesMoreThanMonth() {
 
         List<Article> articles = this.articleRepository.findAll();
