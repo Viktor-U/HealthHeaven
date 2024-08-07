@@ -3,6 +3,7 @@ package bg.softuni.healthheaven.services;
 import bg.softuni.healthheaven.model.dtos.articles.ArticleDTO;
 import bg.softuni.healthheaven.model.dtos.articles.ArticleExportDTO;
 import bg.softuni.healthheaven.model.dtos.commet.CommentExportDTO;
+import bg.softuni.healthheaven.model.dtos.shop.OrderDTO;
 import bg.softuni.healthheaven.model.entities.Article;
 import bg.softuni.healthheaven.model.entities.Comment;
 import bg.softuni.healthheaven.model.entities.User;
@@ -15,6 +16,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.test.context.support.WithMockUser;
 
 import java.time.Instant;
 import java.util.Collections;
@@ -137,4 +140,5 @@ public class ArticleServiceTest {
 
         verify(articleRepository, times(1)).deleteById(1L);
     }
+
 }

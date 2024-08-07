@@ -40,8 +40,8 @@ public class ArticlesController {
 
     @DeleteMapping("/articles/{id}")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public void deleteArticle(@PathVariable Long id) {
-        articleService.deleteArticle(id);
+    public ResponseEntity<ArticleExportDTO> deleteArticle(@PathVariable Long id) {
+       return ResponseEntity.ok(articleService.deleteArticle(id));
     }
 
 

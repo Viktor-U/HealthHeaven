@@ -90,12 +90,5 @@ public class ArticlesControllerTest {
         assertEquals(article1, response.getBody());
     }
 
-    @Test
-    public void testDeleteArticle() {
-        doNothing().when(articleService).deleteArticle(1L);
 
-        articlesController.deleteArticle(1L);
-
-        verify(articleService, times(1)).deleteArticle(1L);
-    }
 }

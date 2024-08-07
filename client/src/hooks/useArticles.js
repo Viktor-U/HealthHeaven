@@ -42,6 +42,6 @@ export function  useCreateArticle() {
 
 export function  useDeleteArticle (articleId) {
     
-    articlesAPI.del(articleId);
+    return articlesAPI.del(articleId);
     
 }

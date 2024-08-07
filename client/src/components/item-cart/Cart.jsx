@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './cart.css';
-import useGetAllItemsInCart, { useDelItemInCart } from '../../hooks/useOrders';
+import useGetAllItemsInCart, { useDelAllItemInCart, useDelItemInCart } from '../../hooks/useOrders';
 import { useAuthContext } from '../../contexts/AuthContext';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -20,7 +20,11 @@ function Cart() {
     initialValues.userId = userId;
 
     const handleBuyAllClick = () => {
+        const clearCart = useDelAllItemInCart();
+        clearCart(initialValues);
+        setItems([])
         alert(t('all_items_ordered'));
+
     };
 
     useEffect(() => {

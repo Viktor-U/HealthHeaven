@@ -114,4 +114,15 @@ public class ShopControllerTest {
         assertEquals(200, response.getStatusCodeValue());
         assertEquals(orderDTO, response.getBody());
     }
+
+    @Test
+    @WithMockUser(authorities = {"ADMIN", "USER"})
+    public void testRemoveAllFromCart() {
+        doNothing().when(itemService).removeAllItemFromCart(any(OrderDTO.class));
+
+        ResponseEntity<OrderDTO> response = shopController.removeAllFromCart(orderDTO);
+
+        assertEquals(200, response.getStatusCodeValue());
+        assertEquals(orderDTO, response.getBody());
+    }
 }

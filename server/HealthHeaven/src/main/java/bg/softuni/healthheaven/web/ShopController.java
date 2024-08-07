@@ -61,4 +61,13 @@ public class ShopController {
 
         return ResponseEntity.ok(orderDTO);
     }
+
+    @DeleteMapping("/shop/cart/del/all")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
+    public ResponseEntity<OrderDTO> removeAllFromCart(@RequestBody OrderDTO orderDTO) {
+
+        itemService.removeAllItemFromCart(orderDTO);
+
+        return ResponseEntity.ok(orderDTO);
+    }
 }

@@ -13,12 +13,9 @@ export const putInCart = (order) => request.post(`${BASE_URL}/cart/add`, order);
 
 export const deleteProductFromCart = (order) => request.del(`${BASE_URL}/cart/del`, order);
 
+export const deleteAllProductsFromCart = (order) => request.del(`${BASE_URL}/cart/del/all`, order);
 
-// export const create = (doctorData) => request.post(BASE_URL, doctorData);
 
-// export const deleteDoctor = (doctorId) => request.del(`${BASE_URL}/${doctorId}`)
-
-// export const edit  = (doctorData) => request.post(`${BASE_URL}/edit`, doctorData)
 
 const shopAPI = {
     getAll,
@@ -26,8 +23,7 @@ const shopAPI = {
     getAllInCart,
     putInCart,
     deleteProductFromCart,
-    // create,
-    // edit,
+    deleteAllProductsFromCart
 };
 
 export default shopAPI;

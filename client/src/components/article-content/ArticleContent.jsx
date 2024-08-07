@@ -1,4 +1,3 @@
-// ArticleContent.jsx
 import React, { useState } from 'react';
 import './article-content.css';
 import { useDeleteArticle, useGetOneArticle } from '../../hooks/useArticles';
@@ -30,9 +29,7 @@ export default function ArticleContent (){
       setArticle(prevState => ({
           ...prevState,
           comments: [...prevState.comments, newComment]
-      }));
-      (article.comments).map((comment) => console.log(comment.author))
-      
+      }));      
       setComment("");
   }
 
@@ -48,6 +45,7 @@ export default function ArticleContent (){
     await useDeleteArticle(articleId);
     navigate('/articles'); 
   }
+  
 
 
   return (

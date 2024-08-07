@@ -116,4 +116,10 @@ public class ItemService {
         userRepository.save(user);
 
     }
+
+    public void removeAllItemFromCart(OrderDTO orderDTO) {
+        User user = userRepository.findById(orderDTO.getUserId()).get();
+        user.getItems().clear();
+        userRepository.save(user);
+    }
 }

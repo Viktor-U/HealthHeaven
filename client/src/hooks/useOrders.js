@@ -28,3 +28,10 @@ export function useDelItemInCart() {
     return itemDelInCartHandler;
 
 }
+
+export function useDelAllItemInCart() {
+    const itemDelInCartHandler = (order) => shopAPI.deleteAllProductsFromCart(order);
+      
+    return itemDelInCartHandler;
+
+}

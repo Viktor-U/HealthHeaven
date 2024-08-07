@@ -9,6 +9,7 @@ import bg.softuni.healthheaven.repositories.CommentRepository;
 import bg.softuni.healthheaven.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -67,8 +68,9 @@ public class ArticleService {
 
     }
 
-    public void deleteArticle(Long id) {
+    public ArticleExportDTO deleteArticle(Long id) {
         articleRepository.deleteById(id);
+        return new ArticleExportDTO();
     }
 }
 

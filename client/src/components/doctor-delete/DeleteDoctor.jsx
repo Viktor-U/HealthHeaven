@@ -1,11 +1,22 @@
-import {Navigate, useParams} from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useParams, Navigate } from 'react-router-dom';
 import { useDeleteDoctor } from '../../hooks/useDoctors';
 
 export default function DeleteDoctor() {
+    const { doctorId } = useParams();
+    const [deleteDoctor, setDeleteDoctor] = useState(false);
 
-    const {doctorId} = useParams();
+    useEffect(() => {
+        const deleteDoctorAsync = async () => {
+            await useDeleteDoctor(doctorId);
+            setDeleteDoctor(true);
+        };
 
-    useDeleteDoctor(doctorId);
-    return  <Navigate to="/doctors"/>
+        deleteDoctorAsync();
+    }, [doctorId]);
+
     
+    return <Navigate to="/doctors" />;
+    
+
 }

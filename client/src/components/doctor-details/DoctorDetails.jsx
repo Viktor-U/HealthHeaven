@@ -17,7 +17,9 @@ export default function DoctorDetails() {
 
     const commentSubmitHandler = async (e) => {
         e.preventDefault();
+
         const newComment = await commentsApi.createDoctorComment(doctorId, email, comment);
+       
         setDoctor(prevState => ({
             ...prevState,
             comments: [...prevState.comments, newComment]

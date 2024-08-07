@@ -18,7 +18,7 @@ const buildArticleUrl = (articleId, commentId) => {
     }
     return url;
 };
-const createDctorComment = async (doctorId, author, content) => requester.post(buildDoctorUrl(doctorId), { author, content });
+const createDoctorComment = async (doctorId, author, content) => requester.post(buildDoctorUrl(doctorId), { author, content });
 
 const deleteDoctorComment = async (doctorId, commentId) => requester.del(buildDoctorUrl(doctorId, commentId));
 
@@ -27,7 +27,7 @@ const createArticleComment = async (articleId, author, content) => requester.pos
 const deleteArticleComment = async (articleId, commentId) => requester.del(buildArticleUrl(articleId, commentId));
 
 export default {
-    createDctorComment,
+    createDoctorComment,
     deleteDoctorComment,
     createArticleComment,
     deleteArticleComment
