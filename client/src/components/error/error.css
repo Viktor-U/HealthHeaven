@@ -1,0 +1,45 @@
+.error-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 40vh;
+    background-color: transparent;
+    color: #d11427;
+    text-align: center;
+  }
+  
+  .error-page h1 {
+    font-size: 3em;
+    margin-bottom: 0.5em;
+  }
+  
+  .error-page p {
+    margin-bottom: 1em;
+    font-size: 2em;
+  }
+  
+  .error-page a {
+    color: #e20d23;
+    background-color: rgb(251, 251, 251);
+    padding: 1em;
+    border-radius: 10px;
+    border: solid black 2px;
+  }
+  .error-page a:hover {
+    background-color: darkred;
+  }
+  .error-doctor{
+    position: absolute;
+    top: 120px;
+  }
+
+  .err-doctor2{
+    position: absolute;
+    margin: 0 49%;
+  }
+
+  .err-div{
+    display: flex;
+    flex-direction: column;
+  }

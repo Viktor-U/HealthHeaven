@@ -17,15 +17,14 @@ import ArticleContent from './components/article-content/ArticleContent';
 import Cart from './components/item-cart/Cart';
 import Shop from './components/item-shop/Shop';
 import ArticleCreate from './components/article-create/ArticleCreate';
+import ErrorPage from './components/error/ErrorPage';
 
 
 function App() {
-  const {isAuthenticated} = useAuthContext();
-  //todo error page;
+  const {isAuthenticated, role} = useAuthContext();
 
 
   return (
-    <AuthContextProvider >
       <div id="box">
           <Header/>
 
@@ -34,22 +33,23 @@ function App() {
                   <Route path='/' element={<Home/>}/>
                   <Route path='/login' element={<Login/>}/>
                   <Route path='/register' element={<Register/>}/>
-                  <Route path='/logout' element={<Logout/>}/>
+                  <Route path='/logout' element={<Logout/>}/>                
                   <Route path='/doctors' element={<DoctorList/>}/>  
-                  <Route path='/doctors/:doctorId/details' element={<DoctorDetails/>}/>
-                  <Route path='/doctors/create' element={<DoctorCreate/>}/>
-                  <Route path='/doctors/:doctorId/edit' element={<DoctorEdit/>}/>
-                  <Route path='/doctors/:doctorId/delete' element={<DeleteDoctor/>}/>
+                  {isAuthenticated && <Route path='/doctors/:doctorId/details' element={<DoctorDetails/>}/>}
+                  {role === 'ADMIN' && <Route path='/doctors/create' element={<DoctorCreate/>}/>}
+                  {role === 'ADMIN' && <Route path='/doctors/:doctorId/edit' element={<DoctorEdit/>}/>}
+                  {role === 'ADMIN' && <Route path='/doctors/:doctorId/delete' element={<DeleteDoctor/>}/>}
                   <Route path='/shop' element={<Shop/>}/>
-                  <Route path='/items/:itemId/details' element={<ItemDetails/>}/>
-                  <Route path='/cart' element={<Cart/>}/>
+                  {isAuthenticated && <Route path='/items/:itemId/details' element={<ItemDetails/>}/>}
+                  {isAuthenticated && <Route path='/cart' element={<Cart/>}/>}
                   <Route path='/articles' element={<Article/>}/>
-                  <Route path='/articles/:articleId' element={<ArticleContent/>}/>
-                  <Route path='/articles/create' element={<ArticleCreate/>}/>
+                  {isAuthenticated && <Route path='/articles/:articleId' element={<ArticleContent/>}/>}
+                  {isAuthenticated && <Route path='/articles/create' element={<ArticleCreate/>}/>}
+                  <Route path='/*' element={<ErrorPage/>}/>
               </Routes>
           </main>
       </div>
-    </AuthContextProvider>
+    
   )
 }
 
