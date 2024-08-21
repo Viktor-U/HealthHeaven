@@ -17,7 +17,7 @@ export default function Header(){
 
     return(
         <header>
-            <h1><Link className="home" to="/">HealthHeavan</Link></h1>
+            <h1><Link className="home" to="/">HealthHeaven</Link></h1>
          
             <button className={`change-language ${activeLanguage === 'en' ? 'active' : ''}`} onClick={() => changeLanguage('en')}>English</button>
             <button className={`change-language ${activeLanguage === 'bg' ? 'active' : ''}`} onClick={() => changeLanguage('bg')}>Български</button>
