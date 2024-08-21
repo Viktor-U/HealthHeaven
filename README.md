@@ -1,10 +1,10 @@
-Здравейте, това е моят проект HealthHeaven, който използва Spring за серверна част, React Vite(JSX) за клиентска част и MySQL базаданни.
-Проектът ми представлява сайт, който предоставя възможност на потребителите да пазаруват различни медикаменти, както и да имат достъп до лекарите, които само Админа може да добавя и редактира.
-Потребителите имат достъп и до различни статии, които могат да коментират или направо да създават собствени такива, ролята на Админа е да следи за неточности и да изтрива тези, които прецени за ненужни или нередни.
-Потребителят, който няма регистрация няма право да гледа подробности на продукти, доктори или статии, както и да създава статии или да ползва количката в сайта за пазаруване, има достъп само до началната страница, всички статии, всички доктори и
-всички продукти, но не и да ги достъпва индивидлално. Клиента има възможност и да избира от езиците български и английски.Сайта предоставя и различни страници с статии, както и възможност за сортирането им по дата.
+Hello, this is my project HealthHeaven, which uses Spring for server side, React Vite(JSX) for client side and MySQL database.
+My project is a site that allows users to shop for various medications, as well as access doctors that only the Admin can add and edit.
+Users also have access to various articles that they can comment on or simply create their own, the role of the Admin is to monitor for inaccuracies and delete those that he deems unnecessary or irregular.
+User without registration is not allowed to view details of products, doctors or articles, as well as create articles or use the shopping cart on the site, only has access to the home page, all articles, all doctors and
+all products, but not to access them individually. The client has the option to choose from the languages ​​Bulgarian and English. The site also provides various pages with articles, as well as the ability to sort them by date.
 
-При отваряне на проекта влезте в appConfig в папката config и  изпълнете указанията за добавяне на данни, но след като разгледата сайта без данни.
+With the project open, go into appConfig in the config folder and follow the instructions to add data, but after viewing the site with no data.
 
 
 
