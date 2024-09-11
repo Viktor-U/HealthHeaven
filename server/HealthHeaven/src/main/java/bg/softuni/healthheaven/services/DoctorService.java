@@ -7,7 +7,6 @@ import bg.softuni.healthheaven.model.entities.Doctor;
 import bg.softuni.healthheaven.repositories.CommentRepository;
 import bg.softuni.healthheaven.repositories.DoctorRepository;
 import lombok.RequiredArgsConstructor;
-import org.attoparser.dom.Comment;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 

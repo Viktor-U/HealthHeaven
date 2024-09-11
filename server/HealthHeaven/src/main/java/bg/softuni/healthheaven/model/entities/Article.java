@@ -1,7 +1,6 @@
 package bg.softuni.healthheaven.model.entities;
 
 import jakarta.persistence.*;
-import jdk.jshell.Snippet;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
